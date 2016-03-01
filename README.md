@@ -1,4 +1,4 @@
-# test-project
+# MyVote v0.0.0
 
 > A Vue.js project
 
