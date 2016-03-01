@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+	<style>
+    .full-width {
+      width: 100%;
+    }
+	</style>
+  </head>
+
+  <body>
+
+    <h1>My Ballot Info</h1>
+
+    <h2>Poll Site</h2>
+    <pollsite
+      latitude="40.669051" 
+      longitude="-73.991965" 
+      county="kings" 
+      streetnumber="169" 
+      streetname="13th st" 
+      postalcode="11215"
+    ></pollsite>
+
+    <h2>Candidates</h2>
+    <contestlist
+      districtkey="51020"
+      electionid="382538"
+    ></contestlist>
+    
+<!--     <googlemap class="full-width" place="27 w 24th St, New York, NY 10011" ></googlemap> -->
+
+    <!-- The build.js file grabs from main.js -->
+    <script src="dist/build.js"></script>
+  </body>
+</html>
