@@ -1,9 +1,14 @@
 <!-- template code -->
 <template>
 
-	<p style="color: blue;">{{ message }}</p>
-	<p style="font-size:0.5em; color: grey;">{{ APIresponse | json }}</p>
-	<p>{{ contestListInfo | json }}</p> 
+	<!-- <p style="color: blue;">{{ message }}</p> -->
+	<!-- <p style="font-size:0.5em; color: grey;">{{ APIresponse | json }}</p> -->
+	<!-- <p>{{ APIresponse | json }}</p>  -->
+
+    <p>
+    {{ APIresponse.site_name }}<br>
+    {{ APIresponse.site_address }}
+  </p>
 
 </template>
 
@@ -17,8 +22,7 @@ export default {
   data:function(){
     return {
       message: "",
-      APIresponse: [],
-      contestListInfo: []
+      APIresponse: []
     }
   },
 
@@ -32,10 +36,13 @@ export default {
           console.log('Contest List: API request sent')
           this.APIresponse = response.data
           console.log('Contest List: API response received and saved')
-          this.contestListInfo = {
-          
-          };
-          console.log(this.contestListInfo, 'Contest List: ?');
+
+          var parties = this.APIresponse["parties"];
+          var democrats = parties.filter(function(party){
+            party.name == "Democratic"
+          });
+
+
       }, function (response) {
           // error callback
           this.message = "Contest List: Failure :("
