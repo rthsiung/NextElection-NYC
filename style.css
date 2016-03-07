@@ -1,0 +1,37 @@
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+  font-family: inherit;
+
+}
+
+body {
+	background-color: #0EAECF;
+	font-family: 'Roboto', sans-serif;
+}
+
+.card {
+	background: #FFFFFF;
+	-webkit-box-shadow: 0px 2px 7px 1px rgba(0,0,0,0.3);
+	-moz-box-shadow: 0px 2px 7px 1px rgba(0,0,0,0.3);
+	box-shadow: 0px 2px 7px 1px rgba(0,0,0,0.3);
+
+	width: 50%;
+	min-width: 570px;
+	max-width: 670px;
+	padding: 4em;
+	margin: 2em auto;
+
+}
+
+@media only screen and (max-width: 600px) {
+	.card {
+		min-width: 300px;
+		max-width: 450px;
+		width: 95%;
+		padding: 2em;
+	}
+}

@@ -1,12 +1,10 @@
 <!-- template code -->
 <template>
 
-  <p style="color: blue;">{{ message }}</p>
-  <p style="font-size:0.5em; color: grey;">{{ APIresponse | json }}</p>
-  <p>
-    {{ APIresponse.site_name }}<br>
-    {{ APIresponse.site_address }}
-  </p>
+<h2>Next Election in NYC:<h2>
+<!-- <h1>{{ nextElection }}</h1> -->
+
+<p>There are {{ elections.length }} other upcoming elections.</p>
 
 </template>
 
@@ -20,7 +18,8 @@ export default {
   data:function(){
     return {
       message: "",
-      APIresponse: []
+      APIresponse: [],
+      elections
     }
   },
 
@@ -34,6 +33,7 @@ export default {
             console.log('Poll Site: API request sent')
           this.APIresponse = response.data
             console.log('Poll Site: API response received and saved')
+
 
       }, function (response) {
           // error callback

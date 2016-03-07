@@ -2,12 +2,41 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>test-project</title>
-	<style>
-	</style>
+    <title>MyVote v0.0.0</title>
+    <link rel="stylesheet" href="style.css">
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,500,400italic,300italic,300,700' rel='stylesheet' type='text/css'>
   </head>
-  <body>
 
+  <body>
+    <p>MyVote (NYC Beta)</p>
+
+    <div class="card">
+      <electiondates></electiondates>
+    </div>
+
+    <div class="card">
+      <h3>Poll Site Info for 169 13th st:</h3>
+      <pollsite
+      latitude="40.669051" 
+      longitude="-73.991965" 
+      county="kings" 
+      streetnumber="169" 
+      streetname="13th st" 
+      postalcode="11215"
+    ></pollsite>
+    </div>
+
+    <div class="card">
+      <h3>Candidates on the ballot for 169 13th st:</h3>
+    <contestlist
+      districtkey="51020"
+      electionid="382538"
+    ></contestlist>
+    </div>
+
+    <div class="card">
+      (insert ballot info card Vue component)
+    </div>
 
     <!-- The build.js file grabs from main.js -->
     <script src="dist/build.js"></script>

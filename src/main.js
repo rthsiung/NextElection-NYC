@@ -6,19 +6,19 @@ import Resource from 'vue-resource'
 Vue.use(Resource)
 
 //My components
-import App from './App.vue'
 import GoogleMap from './GoogleMap.vue'
 import PollSite from './PollSite.vue'
 import ContestList from './ContestList.vue'
+import ElectionDates from './ElectionDates.vue'
 
 //Give more detailed errors
 Vue.config.debug = true
 
 //Set the HTML tags for my Vue components
-Vue.component('app', App)
 Vue.component('googlemap', GoogleMap)
 Vue.component('pollsite', PollSite)
 Vue.component('contestlist', ContestList)
+Vue.component('electiondates', ElectionDates)
 
 //Tell Vue where it can have domain
 new Vue({
