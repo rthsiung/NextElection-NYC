@@ -1,6 +1,6 @@
-# MyVote v0.0.0
+# MyVote
 
-> A Vue.js project
+> A web app that shows you all the information you need to vote. By Rachel Hsiung.
 
 ## Build Setup
 
