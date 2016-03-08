@@ -1,8 +1,11 @@
 <!-- template code -->
 <template>
 
-<h2>Next Election in NYC:<h2>
-<!-- <h1>{{ nextElection }}</h1> -->
+<h2>Next Election in NYC:</h2>
+<h1>{{ nextElection }}</h1>
+
+<p style="color: blue;">{{ message }}</p>
+<p style="font-size:0.5em; color: grey;">{{ elections | json}}</p>
 
 <p>There are {{ elections.length }} other upcoming elections.</p>
 
@@ -19,7 +22,7 @@ export default {
     return {
       message: "",
       APIresponse: [],
-      elections
+      elections: []
     }
   },
 
@@ -29,23 +32,21 @@ export default {
       // GET request
       this.$http.jsonp(this.url).then(function (response) {
           // success callback
-          this.message = "Poll Site: Success!"
-            console.log('Poll Site: API request sent')
+          this.message = "Poll Site - Elections: Success!"
+            console.log('Poll Site - Elections: API request sent')
           this.APIresponse = response.data
-            console.log('Poll Site: API response received and saved')
-
+            console.log('Poll Site - Elections: API response received and saved')
+            this.elections = this.APIresponse.elections
+            console.log('Poll Site - Elections: saved elections array')
 
       }, function (response) {
           // error callback
-          this.message = "Poll Site: Failure :("
+          this.message = "Poll Site - Elections: Failure :("
       });
     },
 
   //Properties - the inputs that you feed to this Vue component
   props: [
-    "latitude", 
-    "longitude", 
-    "county", 
     "streetnumber", 
     "streetname", 
     "postalcode"],

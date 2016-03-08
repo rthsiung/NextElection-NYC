@@ -5,7 +5,6 @@ html {
 *, *:before, *:after {
   box-sizing: inherit;
   font-family: inherit;
-
 }
 
 body {
@@ -24,7 +23,6 @@ body {
 	max-width: 670px;
 	padding: 4em;
 	margin: 2em auto;
-
 }
 
 @media only screen and (max-width: 600px) {

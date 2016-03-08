@@ -43,9 +43,6 @@ export default {
 
   //Properties - the inputs that you feed to this Vue component
   props: [
-    "latitude", 
-    "longitude", 
-    "county", 
     "streetnumber", 
     "streetname", 
     "postalcode"],

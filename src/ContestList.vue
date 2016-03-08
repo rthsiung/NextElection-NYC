@@ -2,13 +2,8 @@
 <template>
 
 	<!-- <p style="color: blue;">{{ message }}</p> -->
-	<!-- <p style="font-size:0.5em; color: grey;">{{ APIresponse | json }}</p> -->
+	<p style="font-size:0.5em; color: grey;">{{ APIresponse | json }}</p>
 	<!-- <p>{{ APIresponse | json }}</p>  -->
-
-    <p>
-    {{ APIresponse.site_name }}<br>
-    {{ APIresponse.site_address }}
-  </p>
 
 </template>
 
