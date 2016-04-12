@@ -45,15 +45,17 @@ input:not([type=submit]):not([type=file]) {
 /* SECTION 2: Custom Classes and IDs */
 
 .card {
+	/*
 	background: #FFFFFF;
 	-webkit-box-shadow: 0px 2px 7px 1px rgba(0,0,0,0.3);
 	-moz-box-shadow: 0px 2px 7px 1px rgba(0,0,0,0.3);
 	box-shadow: 0px 2px 7px 1px rgba(0,0,0,0.3);
+	*/
 
 	width: 50%;
 	min-width: 570px;
 	max-width: 670px;
-	padding: 4em;
+	padding: 3em;
 	margin: 2em auto;
 }
 

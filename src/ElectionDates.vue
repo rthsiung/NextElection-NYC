@@ -1,16 +1,23 @@
 <!-- template code -->
 <template>
 
-<h2>The next election in NYC is on {{ nextElectionDate }}.</h2>
-<p>This will be: {{ nextElectionType }}.</p>
+<h2>The next election in NYC is on <b>{{ nextElectionDate }}</b>.</h2>
+<p>This election is a <a href="">{{ nextElectionType[0] }}</a>. For some people, there will also be a <a href="">{{ nextElectionType[1] }}</a>.</p>
 
-<p>There are {{ numberOfUpcomingElections }} total upcoming elections.</p>
+<p>There are {{ numberOfUpcomingElections }} other elections coming up.</p>
 
-<!-- for debugging -->
-<div style="">
+<ul>
+  <li v-for="component in addressComponents">
+    {{ component.types | json }}: <strong> {{ component.long_name }} </strong>
+  </li>
+</ul>
+
+<!-- for debugging 
+<div>
   <hr>
   API response elections: {{ elections | json }}
 </div>
+-->
 
 </template>
 
