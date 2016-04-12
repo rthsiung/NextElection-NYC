@@ -1,3 +1,10 @@
+/*
+SECTION 1: Basic HTML Elements
+SECTION 2: Custom Classes and IDs
+SECTION 3: Media Queries
+*/
+
+/* SECTION 1: Basic HTML Elements */
 html {
   box-sizing: border-box;
 }
@@ -8,9 +15,34 @@ html {
 }
 
 body {
-	background-color: #0EAECF;
 	font-family: 'Roboto', sans-serif;
 }
+
+h1 {
+}
+
+h2 {
+}
+
+h3 {
+}
+
+p {
+}
+
+h4 {
+}
+
+input:not([type=submit]):not([type=file]) {
+	padding: 12px 10px;
+	background: white;
+	border: 1px solid #0C95B1;
+	box-shadow: inset 0px 1px 3px 0px rgba(0,0,0,0.50);
+}
+
+
+
+/* SECTION 2: Custom Classes and IDs */
 
 .card {
 	background: #FFFFFF;
@@ -25,6 +57,18 @@ body {
 	margin: 2em auto;
 }
 
+.input-label {
+	margin: 1em 0 0 0;
+	color: #A2A2A2;
+	text-transform: uppercase;
+	font-weight: 300;
+	font-size: 0.8em;
+}
+
+
+
+/* SECTION 3: MEDIA QUERIES */
+
 @media only screen and (max-width: 600px) {
 	.card {
 		min-width: 300px;
@@ -33,3 +77,4 @@ body {
 		padding: 2em;
 	}
 }
+

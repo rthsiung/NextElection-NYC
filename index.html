@@ -8,36 +8,62 @@
   </head>
 
   <body>
+    <!--
     <p>MyVote (NYC Beta)</p>
 
+    <h1>real cards:</h1>
+
     <div class="card">
-      <electiondates
-      streetnumber="169" 
-      streetname="13th st" 
-      postalcode="11215"
-      ></electiondates>
+      <p>this card shows the upcoming election dates</p>
     </div>
 
     <div class="card">
+      this card allows user to enter address to get ballot info
+      <addressinput></addressinput>
+    </div>
+
+    <div class="card faq">
+      <h3>Common Questions</h3>
+      <ul>
+        <li>How do I know who to vote for?</li>
+        <li>Do I need to bring an ID?</li>
+        <li>What does the ballot look like?</li>
+      </ul>
+      <h3>Helpful Links</h3>
+      <ul>
+        <li>Register to vote online through the DMV</li>
+        <li>NYC.gov's Voting FAQ</li>
+      </ul>
+    </div>
+
+
+    <h1>test cards:</h1>
+    -->
+
+    <div>
+      <!--Show CardDates.vue here, using a sample address-->
+      <carddates streetnumber="169" streetname="13th St" postalcode="11215"></carddates>
+    </div>
+
+<!--
+    <div class="card">
       <h3>Poll Site Info for 169 13th st:</h3>
       <pollsite
-      streetnumber="169" 
-      streetname="13th st" 
-      postalcode="11215"
+        streetnumber="169" 
+        streetname="13th st" 
+        postalcode="11215"
     ></pollsite>
     </div>
 
     <div class="card">
       <h3>Candidates on the ballot for 169 13th st:</h3>
     <contestlist
-      districtkey="51020"
-      electionid="382538"
+        districtkey="51020"
+        electionid="382538"
     ></contestlist>
     </div>
 
-    <div class="card">
-      (insert ballot info card Vue component)
-    </div>
+-->
 
     <!-- The build.js file grabs from main.js -->
     <script src="dist/build.js"></script>

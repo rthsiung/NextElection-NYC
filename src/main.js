@@ -9,7 +9,8 @@ Vue.use(Resource)
 import GoogleMap from './GoogleMap.vue'
 import PollSite from './PollSite.vue'
 import ContestList from './ContestList.vue'
-import ElectionDates from './ElectionDates.vue'
+import CardDates from './CardDates.vue'
+import AddressInput from './AddressInput.vue'
 
 //Give more detailed errors
 Vue.config.debug = true
@@ -18,7 +19,8 @@ Vue.config.debug = true
 Vue.component('googlemap', GoogleMap)
 Vue.component('pollsite', PollSite)
 Vue.component('contestlist', ContestList)
-Vue.component('electiondates', ElectionDates)
+Vue.component('carddates', CardDates)
+Vue.component('addressinput', AddressInput)
 
 //Tell Vue where it can have domain
 new Vue({
