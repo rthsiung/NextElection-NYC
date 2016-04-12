@@ -7,8 +7,8 @@
 <p>There are {{ numberOfUpcomingElections }} other elections coming up.</p>
 
 <ul>
-  <li v-for="component in addressComponents">
-    {{ component.types | json }}: <strong> {{ component.long_name }} </strong>
+  <li v-for="">
+    (list of upcoming election dates and types)
   </li>
 </ul>
 
