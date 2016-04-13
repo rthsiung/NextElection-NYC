@@ -1,6 +1,6 @@
 {
-  "name": "test-project",
-  "description": "A Vue.js project",
+  "name": "NextElection NYC",
+  "description": "A web app that shows you all the information you need to understand the next upcoming election in NYC.",
   "author": "Rachel Hsiung <rachel.hsiung.designs@gmail.com>",
   "private": true,
   "scripts": {
@@ -9,7 +9,8 @@
   },
   "dependencies": {
     "vue": "^1.0.0",
-    "vue-resource": "^0.7.0"
+    "vue-resource": "^0.7.0",
+    "moment": "^2.12.0"
   },
   "devDependencies": {
     "babel-core": "^6.0.0",
