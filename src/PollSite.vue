@@ -30,14 +30,12 @@ export default {
       // GET request
       this.$http.jsonp(this.url).then(function (response) {
           // success callback
-          this.message = "Poll Site: Success!"
-            console.log('Poll Site: API request sent')
+          this.message = "Poll site API call... success!"
           this.APIresponse = response.data
-            console.log('Poll Site: API response received and saved')
 
       }, function (response) {
           // error callback
-          this.message = "Poll Site: Failure :("
+          this.message = "Poll site API call... failure. :("
       });
     },
 

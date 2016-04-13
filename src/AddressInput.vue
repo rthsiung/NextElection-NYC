@@ -18,13 +18,15 @@
   <ol><li v-for="component in addressComponents">
       {{ component.types | json }}: <strong> {{ component.long_name }} </strong>
   </li></ol>
-    
-  <h4>For debugging: </h4>
-  {{ debugResponseData | json }}
 
-  <pollsite 
-    v-show=""
+  <pollsite streetnumber= streetname= postalcode=
   ></pollsite>
+
+api response
+  <p>
+    {{ debugResponseData | json }}
+  </p>
+  
 
 </template>
 
@@ -55,6 +57,10 @@ export default {
         this.location = firstMatch.geometry.location
         this.addressComponents = firstMatch.address_components
         this.debugResponseData = response.data
+
+        get
+
+
       }, function (response) {
           // error callback
       })

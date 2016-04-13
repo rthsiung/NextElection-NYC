@@ -1,23 +1,13 @@
 <!-- template code -->
 <template>
 
-<h2>The next election in NYC is on <b>{{ nextElectionDate }}</b>.</h2>
-<p>This election is a <a href="">{{ nextElectionType[0] }}</a>. For some people, there will also be a <a href="">{{ nextElectionType[1] }}</a>.</p>
-
-<p>There are {{ numberOfUpcomingElections }} other elections coming up.</p>
+<p>There are <b>{{ numberOfUpcomingElections }} other elections</b> coming up.</p>
 
 <ul>
   <li v-for="">
     (list of upcoming election dates and types)
   </li>
 </ul>
-
-<!-- for debugging 
-<div>
-  <hr>
-  API response elections: {{ elections | json }}
-</div>
--->
 
 </template>
 
@@ -35,9 +25,7 @@ export default {
       elections: [],
       electionDatesTypes: [],
       upcomingElections: {},
-      numberOfUpcomingElections: 0,
-      nextElectionDate: "",
-      nextElectionType: []
+      numberOfUpcomingElections: 0
     }
   },
 
@@ -50,7 +38,7 @@ export default {
         this.message = "We got an API response!";
         this.APIresponse = response.data; // store the api response
         this.elections = this.APIresponse.elections; 
-        console.log("CardDates.vue - Saved an array with the elections from the api response!");
+        console.log("UpcomingElections Vue Component - Saved an array with the elections from the api response!");
 
         // get election date and type from the API response
         this.electionDatesTypes = this.APIresponse.elections.map(
@@ -81,9 +69,6 @@ export default {
         this.numberOfUpcomingElections = Object.keys(tempUpcomingElections).length - 1;
 
         console.log(this.upcomingElections);
-
-        this.nextElectionDate = Object.keys(this.upcomingElections)[0];
-        this.nextElectionType = this.upcomingElections[this.nextElectionDate];
 
       }, function (response) {
           // error callback
