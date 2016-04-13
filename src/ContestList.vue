@@ -1,9 +1,8 @@
 <!-- template code -->
 <template>
 
-	<!-- <p style="color: blue;">{{ message }}</p> -->
-	<p style="font-size:0.5em; color: grey;">{{ APIresponse | json }}</p>
-	<!-- <p>{{ APIresponse | json }}</p>  -->
+{{ parties | json }}
+
 
 </template>
 
@@ -17,7 +16,8 @@ export default {
   data:function(){
     return {
       message: "",
-      APIresponse: []
+      APIresponse: [],
+      parties: []
     }
   },
 
@@ -28,12 +28,12 @@ export default {
       this.$http.jsonp(this.url).then(function (response) {
           // success callback
           this.message = "Contest List: Success!"
-          console.log('Contest List: API request sent')
           this.APIresponse = response.data
-          console.log('Contest List: API response received and saved')
+          console.log('Contest List API response received and saved')
+          this.parties = this.APIresponse.parties
 
-          var parties = this.APIresponse["parties"];
-          var democrats = parties.filter(function(party){
+          
+          var democrats = this.parties.filter(function(party){
             party.name == "Democratic"
           });
 

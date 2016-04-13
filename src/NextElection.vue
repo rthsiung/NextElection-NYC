@@ -1,16 +1,25 @@
 <!-- template code -->
 <template>
 
-<h1>The next election in NYC is on <b>{{ nextElectionDate }}</b>.</h1>
+<h1>The next election in NYC is on <b>{{ nextElectionDateFormatted }}</b>.</h1>
 <p>(This election is a <a href="">{{ nextElectionType[0] }}</a>. For some people, there will also be a <a href="">{{ nextElectionType[1] }}</a>.)</p>
 
 </template>
 
 <!-- logic code -->
 <script>
+
+import moment from 'moment'
+
 var browserKey = '33a19b90-164d-4262-9fdb-148fc935b9c5' //My ElectionAPI key
 
 export default {
+
+  methods: {
+    moment:function() {
+      return moment();
+    }
+  },
 
   //Here are my variables 
   data:function(){
@@ -21,7 +30,8 @@ export default {
       electionDatesTypes: [],
       upcomingElections: {},
       nextElectionDate: "",
-      nextElectionType: []
+      nextElectionDateFormatted:"",
+      nextElectionType: [],
     }
   },
 
@@ -76,6 +86,8 @@ export default {
         console.log(this.upcomingElections);
 
         this.nextElectionDate = Object.keys(this.upcomingElections)[0];
+        this.nextElectionDateFormatted = moment(this.nextElectionDate).format('dddd, MMMM Do, YYYY');
+
         this.nextElectionType = this.upcomingElections[this.nextElectionDate];
 
       }, function (response) {

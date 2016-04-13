@@ -4,35 +4,19 @@
   <p class="input-label">Your Registered Voting Address</p>
   <input
     style="width: 95%;"
-    id="address"
+    id="autocomplete"
     placeholder="e.g. 25 West 4th St, New York, NY 10012"
     autocomplete="off"
     type="text"
     v-model="addressEntered"
     v-on:keyup="lookupAddress | debounce 500"
   ></input>
-
-  <googlemap :place="googFormattedAddress"></googlemap>
-
-  <p>First match Google found is: <em>{{ googFormattedAddress }}</em></p>
-  <ol><li v-for="component in addressComponents">
-      {{ component.types | json }}: <strong> {{ component.long_name }} </strong>
-  </li></ol>
-
-  <pollsite streetnumber= streetname= postalcode=
-  ></pollsite>
-
-api response
-  <p>
-    {{ debugResponseData | json }}
-  </p>
   
 
 </template>
 
 <!-- logic code -->
 <script>
-
 var browserKey = 'AIzaSyCFWn95jlosz4xNi5l6Ug0pMdBrtLrWDDM' // my browser key
 
 export default {
@@ -58,8 +42,6 @@ export default {
         this.addressComponents = firstMatch.address_components
         this.debugResponseData = response.data
 
-        get
-
 
       }, function (response) {
           // error callback
@@ -68,9 +50,7 @@ export default {
     }
   },
 }
-
 </script>
-
 
 <style scoped>
 </style>

@@ -8,7 +8,6 @@
   </head>
 
   <body>
-
     <div class="card">
       <nextelection streetnumber="25" streetname="W 4th St" postalcode="10012"></nextelection>
     </div>
@@ -42,29 +41,14 @@
       <p style="text-align: center;">A project by <a href="http://hsiungised.com">Rachel Hsiung</a>.</p>
     </div>
 
-<!--
-    <h1>test cards:</h1>
-
-    <div class="card">
-      <h3>Poll Site Info for 169 13th st:</h3>
-      <pollsite
-        streetnumber="169" 
-        streetname="13th st" 
-        postalcode="11215"
-    ></pollsite>
-    </div>
-
-    <div class="card">
-      <h3>Candidates on the ballot for 169 13th st:</h3>
-    <contestlist
-        districtkey="51020"
-        electionid="382538"
-    ></contestlist>
-    </div>
-
--->
-
     <!-- The build.js file grabs from main.js -->
     <script src="dist/build.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCFWn95jlosz4xNi5l6Ug0pMdBrtLrWDDM&libraries=places&callback=initAutocomplete" async defer></script>
+    <script>
+      function initAutocomplete(){
+        var addressinputfield = document.getElementById("autocomplete");
+        var autocomplete = new google.maps.places.Autocomplete(addressinputfield);
+      }
+    </script>
   </body>
 </html>
