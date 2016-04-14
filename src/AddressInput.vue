@@ -6,12 +6,14 @@
     style="width: 95%;"
     id="autocomplete"
     placeholder="e.g. 25 West 4th St, New York, NY 10012"
-    autocomplete="off"
     type="text"
-    v-model="addressEntered"
-    v-on:keyup="lookupAddress | debounce 500"
+    v-el:addressentered
   ></input>
+  <button v-on:click="saveAddress">Go</button>
   
+  <div id="everything-you-need-know">
+    <pollsite streetnumber="" streetname="" postalcode=""></pollsite>
+  </div>
 
 </template>
 
@@ -23,32 +25,23 @@ export default {
 
   data: function() {
     return {
-      addressEntered: "", 
-      googFormattedAddress: "", 
-      location: {}, //lat, long
-      addressComponents: [], //streetname, zip, etc
-      debugResponseData: {} 
+      addressentered: "",
+      userAddress:""
     }
   },
 
   methods: {
-    lookupAddress: function () {
-      var geocodeURL = "https://maps.googleapis.com/maps/api/geocode/json?address=" + this.addressEntered + "&key=" + browserKey
-      this.$http.get(geocodeURL).then(function (response) {
-        // the API can return multiple possible matches, if it does, assume that the first result (at index '0') is the correct match
-        var firstMatch = response.data.results[0] 
-        this.googFormattedAddress = firstMatch.formatted_address
-        this.location = firstMatch.geometry.location
-        this.addressComponents = firstMatch.address_components
-        this.debugResponseData = response.data
-
-
-      }, function (response) {
-          // error callback
-      })
-
+    saveAddress: function(){
+      this.userAddress = this.$els.addressentered.value;
+      console.log(this.userAddress)
     }
   },
+
+  ready: function() {
+    console.log("testing here we go!");
+    console.log(new google.maps.places.Autocomplete())
+  }
+
 }
 </script>
 

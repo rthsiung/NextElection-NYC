@@ -42,14 +42,16 @@
       <p style="text-align: center;">A project by <a href="http://hsiungised.com">Rachel Hsiung</a>.</p>
     </div>
 
-    <!-- The build.js file grabs from main.js -->
-    <script src="dist/build.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCFWn95jlosz4xNi5l6Ug0pMdBrtLrWDDM&libraries=places&callback=initAutocomplete" async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCFWn95jlosz4xNi5l6Ug0pMdBrtLrWDDM&libraries=places&callback=initAutocomplete"></script>
     <script>
       function initAutocomplete(){
         var addressinputfield = document.getElementById("autocomplete");
-        var autocomplete = new google.maps.places.Autocomplete(addressinputfield);
+        var userAddressAutocompleteObject = new google.maps.places.Autocomplete(addressinputfield);
       }
     </script>
+
+    <!-- The build.js file grabs from main.js -->
+    <script src="dist/build.js"></script>
+
   </body>
 </html>
