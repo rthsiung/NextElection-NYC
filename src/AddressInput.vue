@@ -4,12 +4,12 @@
   <p class="input-label">Your Registered Voting Address</p>
   <input
     style="width: 95%;"
-    id="autocomplete"
+    id="addressInputField"
     placeholder="e.g. 25 West 4th St, New York, NY 10012"
     type="text"
-    v-el:addressentered
   ></input>
-  <button v-on:click="saveAddress">Go</button>
+  <button v-on:click="">Go</button>
+
   
   <div id="everything-you-need-know">
     <pollsite streetnumber="" streetname="" postalcode=""></pollsite>
@@ -25,21 +25,25 @@ export default {
 
   data: function() {
     return {
-      addressentered: "",
-      userAddress:""
+      addressDetails: []      
     }
   },
 
   methods: {
-    saveAddress: function(){
-      this.userAddress = this.$els.addressentered.value;
-      console.log(this.userAddress)
-    }
+
   },
 
   ready: function() {
-    console.log("testing here we go!");
-    console.log(new google.maps.places.Autocomplete())
+    //Take the address input field and add Google's autocomplete dropdown feature to it
+    var addressinputfield = document.getElementById("addressInputField");
+    var userAddressAutocompleteObject = new google.maps.places.Autocomplete(addressinputfield);
+
+    //When the user enters in a new address, Google's autocomplete feature will update and we can return this new address's details using .getPlace()
+    userAddressAutocompleteObject.addListener('place_changed', function(){
+      this.addressDetails = userAddressAutocompleteObject.getPlace();
+      console.log(this.addressDetails);
+    });
+    
   }
 
 }
