@@ -2,7 +2,7 @@
 <template>
 
 <h1>The next election in NYC is on <b>{{ nextElectionDateFormatted }}</b>.</h1>
-<p>(This election is a <a href="">{{ nextElectionType[0] }}</a>. For some people, there will also be a <a href="">{{ nextElectionType[1] }}</a>.)</p>
+<p>(This election is a <a class="showhide" href="">{{ nextElectionType[0] }}</a>. For some people, there will also be a <a class="showhide" href="">{{ nextElectionType[1] }}</a>.)</p>
 
 </template>
 

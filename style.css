@@ -35,11 +35,12 @@ h4 {
 
 input:not([type=submit]):not([type=file]) {
 	padding: 12px 10px;
+	/*
 	background: white;
 	border: 1px solid #0C95B1;
 	box-shadow: inset 0px 1px 3px 0px rgba(0,0,0,0.50);
+	*/
 }
-
 
 
 /* SECTION 2: Custom Classes and IDs */
@@ -65,6 +66,15 @@ input:not([type=submit]):not([type=file]) {
 	text-transform: uppercase;
 	font-weight: 300;
 	font-size: 0.8em;
+}
+
+a.showhide, 
+a.showhide:hover, 
+a.showhide:visited, 
+a.showhide:active {
+	color: black;
+	text-decoration: none;
+	border-bottom: 1px gray dashed;
 }
 
 
