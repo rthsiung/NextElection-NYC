@@ -6,23 +6,25 @@ import Resource from 'vue-resource'
 Vue.use(Resource)
 
 //My components
-import GoogleMap from './GoogleMap.vue'
-import PollSite from './PollSite.vue'
-import ContestList from './ContestList.vue'
 import NextElection from './NextElection.vue'
-import UpcomingElections from './UpcomingElections.vue'
 import AddressInput from './AddressInput.vue'
+import PollSite from './PollSite.vue'
+import Ballot from './Ballot.vue'
+import GoogleMap from './GoogleMap.vue'
+import UpcomingElections from './UpcomingElections.vue'
+
 
 //Give more detailed errors
 Vue.config.debug = true
 
 //Set the HTML tags for my Vue components
-Vue.component('googlemap', GoogleMap)
-Vue.component('pollsite', PollSite)
-Vue.component('contestlist', ContestList)
 Vue.component('nextelection', NextElection)
-Vue.component('upcomingelections', UpcomingElections)
 Vue.component('addressinput', AddressInput)
+Vue.component('pollsite', PollSite)
+Vue.component('ballot', Ballot)
+Vue.component('googlemap', GoogleMap)
+Vue.component('upcomingelections', UpcomingElections)
+
 
 //Tell Vue where it can have domain
 new Vue({

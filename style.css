@@ -68,13 +68,10 @@ input:not([type=submit]):not([type=file]) {
 	font-size: 0.8em;
 }
 
-a.showhide, 
-a.showhide:hover, 
-a.showhide:visited, 
-a.showhide:active {
-	color: black;
+.showhide {
 	text-decoration: none;
 	border-bottom: 1px gray dashed;
+	cursor: help;
 }
 
 
