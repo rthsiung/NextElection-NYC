@@ -49,7 +49,6 @@ export default {
         this.message = "We got an API response!";
         this.APIresponse = response.data; // store the api response
         this.elections = this.APIresponse.elections; 
-        console.log("CardDates.vue - Saved an array with the elections from the api response!");
 
         this.electionDatesTypes = this.APIresponse.elections.map(
           function (electionItem) {
@@ -88,7 +87,7 @@ export default {
         // 
         this.upcomingElections = tempUpcomingElections;
 
-        console.log(this.upcomingElections);
+        //console.log(this.upcomingElections);
 
         this.nextElectionDate = Object.keys(this.upcomingElections)[0];
         this.nextElectionDateFormatted = moment(this.nextElectionDate).format('dddd, MMMM Do, YYYY');

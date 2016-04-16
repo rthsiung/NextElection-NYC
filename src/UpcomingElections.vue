@@ -4,7 +4,7 @@
 <p>There are <b>{{ numberOfUpcomingElections }} other elections</b> coming up.</p>
 
 <ul>
-  <li v-for="">
+  <li>
     (list of upcoming election dates and types)
   </li>
 </ul>
@@ -38,7 +38,6 @@ export default {
         this.message = "We got an API response!";
         this.APIresponse = response.data; // store the api response
         this.elections = this.APIresponse.elections; 
-        console.log("UpcomingElections Vue Component - Saved an array with the elections from the api response!");
 
         // get election date and type from the API response
         this.electionDatesTypes = this.APIresponse.elections.map(
@@ -68,7 +67,7 @@ export default {
         this.upcomingElections = tempUpcomingElections;
         this.numberOfUpcomingElections = Object.keys(tempUpcomingElections).length - 1;
 
-        console.log(this.upcomingElections);
+        //console.log(this.upcomingElections);
 
       }, function (response) {
           // error callback
