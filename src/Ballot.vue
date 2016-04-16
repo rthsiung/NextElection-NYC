@@ -1,8 +1,7 @@
 <!-- template code -->
 <template>
 
-{{ parties | json }}
-
+{{ }}
 
 </template>
 
@@ -16,32 +15,44 @@ export default {
   data:function(){
     return {
       message: "",
-      APIresponse: [],
-      parties: []
+      APIresponse: []
     }
   },
 
   //This tells this Vue component what to do when it's rendered on a page
   ready: function() {
 
-      // GET request
-      this.$http.jsonp(this.url).then(function (response) {
+    // GET request
+    this.$http.jsonp(this.url).then(function (response) {
           // success callback
-          this.message = "Contest List: Success!"
-          this.APIresponse = response.data
-          console.log('Contest List API response received and saved')
-          this.parties = this.APIresponse.parties
+          this.message = "Contest List: Success!";
+          this.APIresponse = response.data;
 
-          
-          var democrats = this.parties.filter(function(party){
-            party.name == "Democratic"
+          //Store all of the party info in a new object, but only for parties where there are contests
+          var partiesWithContests = {};
+          this.APIresponse.parties.forEach(
+            function(partyinfo){
+              if (partyinfo.contests[0].contest_description != "No Contests"){
+                partiesWithContests[partyinfo.name] = partyinfo;
+              }
           });
+          //console.log(Object.keys(partiesWithContests)); // shows the party names!
 
-
+          //if the users chooses "partyName X", then show them only contests + candidates for that party
+          var partyChosen = "";
+          partyChosen = "Democratic";
+          partiesWithContests[partyChosen].contests.forEach(function(contest){
+            console.log(contest.contest_description);
+            contest.candidacies.forEach(function(candidate){
+              console.log(candidate.ballot_name);
+            })
+          ;});
+   
       }, function (response) {
           // error callback
           this.message = "Contest List: Failure :("
       });
+
     },
 
   //Properties - the inputs that you feed to this Vue component
