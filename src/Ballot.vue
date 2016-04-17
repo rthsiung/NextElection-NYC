@@ -1,18 +1,24 @@
 <!-- template code -->
 <template>
 
-<p>The state of New York holds <span class="showhide">“closed” primaries</span>, which means only people who are already registered with a political party may vote for that party’s candidate(s).</p>
+<p>The state of New York holds <span class="showhide">“closed” primaries</span> -- so only people who are already registered with a political party may vote for that party’s candidate(s).</p>
 
 <p class="input-label">Select a party to view their ballot:</p>
-<select v-model="chooseParty">
-  <option selected disabled hidden style="display:none" value=""></option>
-  <option v-for="party in listofParties" v-bind:value="chosenParty">
-    {{ party }}    
-  </option>
+<select v-model="partyselect">
+  <option selected value="">No party selected</option>
+  <option v-for="party in listofParties">{{ party }}</option>
 </select>
 
-<div v-if="chooseParty">
-  show ballot here
+<div v-show="partyselect">
+  <p>
+    The party you selected: {{ partyselect }}
+  </p>
+
+  <p>show office</p>
+    <ul>
+      <li>show candidates</li>
+    </ul>
+
 </div>
 
 </template>
@@ -27,7 +33,7 @@ export default {
   data:function(){
     return {
       message: "",
-      chooseParty: "",
+      partyselect: null,
       APIresponse: [],
       listofParties: []
     }
@@ -38,35 +44,33 @@ export default {
 
     // GET request
     this.$http.jsonp(this.url).then(function (response) {
-          // success callback
-          this.message = "Contest List: Success!";
-          this.APIresponse = response.data;
+      // success callback
+      this.APIresponse = response.data;
 
-          //Store all of the party info in partiesWithContests object, but only for parties where there are contests
-          var partiesWithContests = {};
-          this.APIresponse.parties.forEach(
-            function(partyinfo){
-              if (partyinfo.contests[0].contest_description != "No Contests"){
-                partiesWithContests[partyinfo.name] = partyinfo;
-              }
-          });
-          
-          this.listofParties = Object.keys(partiesWithContests); // shows the party names!
-          console.log(this.listofParties);
-          //console.log(JSON.stringify(partiesWithContests));
+      //Store all of the party info in partiesWithContests object, but only for parties where there are contests
+      var partiesWithContests = {};
+      this.APIresponse.parties.forEach(
+        function(partyinfo){
+          if (partyinfo.contests[0].contest_description != "No Contests"){
+            partiesWithContests[partyinfo.name] = partyinfo;
+          }
+      });
+      
+      this.listofParties = Object.keys(partiesWithContests); // shows the party names!
+      //console.log(JSON.stringify(partiesWithContests));
 
-          //if the users chooses "partyName X", then show them only contests + candidates for that party
-          // var partyChosen = "";
-          // partyChosen = "Democratic";
-          // partiesWithContests[partyChosen].contests.forEach(function(contest){
-          //   console.log(contest.contest_description);
-          //   contest.candidacies.forEach(function(candidate){
-          //     console.log(candidate.ballot_name);
-          //   })
-          // });
+      //if the users chooses "partyName X", then show them only contests + candidates for that party
+      // var partyChosen = "";
+      // partyChosen = "Democratic";
+      // partiesWithContests[partyChosen].contests.forEach(function(contest){
+      //   console.log(contest.contest_description);
+      //   contest.candidacies.forEach(function(candidate){
+      //     console.log(candidate.ballot_name);
+      //   })
+      // });
+
       }, function (response) {
           // error callback
-          this.message = "Contest List: Failure :("
       });
 
     },
