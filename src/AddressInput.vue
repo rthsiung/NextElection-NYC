@@ -4,25 +4,29 @@
 <!--Address Input Area-->
   <h2>Where do I vote?<br>Who are the candidates?</h2>
 
-  <p class="input-label">Your Registered Voting Address</p>
+  <p>Enter the address where you're registered to vote:</p>
   <input style="width: 100%;" id="addressInputField" placeholder="e.g. 25 West 4th St, New York, NY 10012" type="text"
   ></input>
 
-  <p><span class="showhide">I'm not sure if (or where) I'm registered to vote</span>.</p>
+  <p><span class="moreinfo">I'm not sure where (or if) I'm registered to vote</span>.</p>
 
-  
+   <p>The address is: {{addressDetailsStreetName}} {{addressDetailsStreetName}}, {{addressDetailsPostalCode}}.</p>
 
 <!--Everything you need to know to vote!-->
 
-  <div style="" id="everything-you-need-know">
+  <div v-if="addressDetailsStreetNumber != null" id="everything-you-need-to-know">
+    
     <pollsite 
-    v-bind:streetnumber = "addressDetailsStreetNumber"
-    v-bind:streetname = "addressDetailsStreetName"
-    v-bind:postalcode = "addressDetailsPostalCode"
+    :streetnumber = "addressDetailsStreetNumber"
+    :streetname = "addressDetailsStreetName"
+    :postalcode = "addressDetailsPostalCode"
     ></pollsite>
-    <!--<ballot districtkey="" electionid=""></ballot>-->
-  </div>
 
+    <!--
+    <ballot districtkey="" electionid=""></ballot>
+    -->
+
+  </div>
 
 </template>
 
@@ -34,48 +38,46 @@ export default {
 
   data: function() {
     return {
-      addressDetails: {},
-      addressDetailsStreetName: "", //for poll site
-      addressDetailsStreetNumber: "", //for poll site
-      addressDetailsPostalCode: "", //for poll site
-      addressDetailsDistrictKey: "", //for ballot
-      addressDetailsElectionID: ""  //for ballot
+      addressDetails: {}, // object that stores the address details returned by Google's autocomplete API
+      addressDetailsStreetName: null, 
+      addressDetailsStreetNumber: null, 
+      addressDetailsPostalCode: null, 
+      addressDetailsDistrictKey: null, 
+      addressDetailsElectionID: null 
     }
   },
 
   methods: {
+    showAlert: function(){
+      alert('you blurred whoo!');
+    }
   },
 
   ready: function() {
     //Take the address input field and add Google's autocomplete dropdown feature to it
     //I'm using the Google Maps Javascript API, which has an autocomplete feature
     var addressinputfield = document.getElementById("addressInputField");
-    var userAddressAutocompleteObject = new google.maps.places.Autocomplete(addressinputfield);
+    var addressAPIresponse = new google.maps.places.Autocomplete(addressinputfield);
 
     //When the user enters in a new address, Google's autocomplete feature will update and we can return this new address's details using .getPlace()
-    userAddressAutocompleteObject.addListener('place_changed', function(){
-      this.addressDetails = userAddressAutocompleteObject.getPlace();
+    addressAPIresponse.addListener('place_changed', function(){
+      this.addressDetails = addressAPIresponse.getPlace();
     //console.log(JSON.stringify(this.addressDetails));
 
-    //Create a new array with just the address components, and then just get the first type and the long_name
-    var justcomponents = this.addressDetails.address_components;
-    var typeandLongName = {};
-    justcomponents.forEach(function (component) {
-      typeandLongName[component.types[0]] = component.long_name;
-    });
-    //console.log(typeandLongName);
+      //Create a new array with just the address components, then format it so that the keys are the "type", and the values are the "long_name" 
+      var addressComponents = this.addressDetails.address_components;
+      var addressComponentsFormatted = {};
+      addressComponents.forEach(function (component) {
+        addressComponentsFormatted[component.types[0]] = component.long_name;
+      });
+      //console.log(addressComponentsFormatted);
 
-    //Save the streetname, streetnumber,and postalcode
-    this.addressDetailsStreetNumber = typeandLongName.street_number;
-    this.addressDetailsStreetName = typeandLongName.route;
-    this.addressDetailsPostalCode = typeandLongName.postal_code;
+      //Save the streetname, streetnumber,and postalcode
+      this.addressDetailsStreetNumber = addressComponentsFormatted.street_number;
+      this.addressDetailsStreetName = addressComponentsFormatted.route;
+      this.addressDetailsPostalCode = addressComponentsFormatted.postal_code;
 
-    console.log("street number is " + this.addressDetailsStreetNumber);
-    console.log("street name is " + this.addressDetailsStreetName);
-    console.log("zipcode is " + this.addressDetailsPostalCode);
-    
-
-
+      console.log("Address is: " + this.addressDetailsStreetNumber + " " + this.addressDetailsStreetName + ", " + this.addressDetailsPostalCode);
     });
     
   }

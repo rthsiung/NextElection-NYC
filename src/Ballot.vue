@@ -1,9 +1,11 @@
 <!-- template code -->
 <template>
 
-<p>The state of New York holds <span class="showhide">“closed” primaries</span> -- so only people who are already registered with a political party may vote for that party’s candidate(s).</p>
+<h2>The Candidates</h2>
 
-<p class="input-label">Select a party to view their ballot:</p>
+<p>The state of New York holds <span class="moreinfo">“closed” primaries</span> -- so only people who are already registered with a political party may vote for that party’s candidate(s).</p>
+
+<p><b>Select a party to view their ballot:</b></p>
 <select v-model="partyselect">
   <option selected value="">No party selected</option>
   <option v-for="party in listofParties">{{ party }}</option>
@@ -19,6 +21,10 @@
       <li>show candidates</li>
     </ul>
 
+</div>
+
+<div v-else>
+  <p><span class="showhide">Why isn't my party listed?</span></p>
 </div>
 
 </template>

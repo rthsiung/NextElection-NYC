@@ -1,11 +1,15 @@
 <!-- template code -->
 <template>
 
-  here is your pollsite omg:
+  <h2>Where You Vote</h2>
   <p>
     {{ APIresponse.site_name }}<br>
     {{ APIresponse.site_address }}
   </p>
+
+<!--
+  <googlemap place="" ></googlemap>
+-->
 
 </template>
 

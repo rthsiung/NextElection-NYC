@@ -8,7 +8,7 @@
 
 <!-- logic code -->
 <script>
-var browserKey = 'AIzaSyCFWn95jlosz4xNi5l6Ug0pMdBrtLrWDDM' // my browser key
+var browserKey = 'AIzaSyCFWn95jlosz4xNi5l6Ug0pMdBrtLrWDDM' // my Google Maps browser key
 export default {
   // a slightly more advanced example of how to use props that includes type validation (you'll get an error if you try to pass in something that isn't a String), and also provides a default value if you forget to supply a value.
   props: {

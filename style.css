@@ -73,7 +73,7 @@ select {
 	font-size: 0.8em;
 }
 
-.showhide {
+.moreinfo {
 	text-decoration: none;
 	border-bottom: 1px gray dashed;
 	cursor: help;
