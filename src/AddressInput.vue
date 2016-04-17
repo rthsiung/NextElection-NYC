@@ -5,7 +5,7 @@
   <h2>Where do I vote?<br>Who are the candidates?</h2>
 
   <p class="input-label">Your Registered Voting Address</p>
-  <input style="width: 95%;" id="addressInputField" placeholder="e.g. 25 West 4th St, New York, NY 10012" type="text"
+  <input style="width: 100%;" id="addressInputField" placeholder="e.g. 25 West 4th St, New York, NY 10012" type="text"
   ></input>
 
   <p><span class="showhide">I'm not sure if (or where) I'm registered to vote</span>.</p>
@@ -14,12 +14,11 @@
 
 <!--Everything you need to know to vote!-->
 
-  <div style="display:none;" id="everything-you-need-know">
-    Here's your poll site:
+  <div style="" id="everything-you-need-know">
     <pollsite 
-    streetnumber= {{ addressDetailsStreetNumber }}
-    streetname= {{ addressDetailsStreetName }} 
-    postalcode= {{ addressDetailsPostalCode }}
+    v-bind:streetnumber = "addressDetailsStreetNumber"
+    v-bind:streetname = "addressDetailsStreetName"
+    v-bind:postalcode = "addressDetailsPostalCode"
     ></pollsite>
     <!--<ballot districtkey="" electionid=""></ballot>-->
   </div>

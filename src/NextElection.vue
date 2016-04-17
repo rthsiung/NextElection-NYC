@@ -15,12 +15,6 @@ var browserKey = '33a19b90-164d-4262-9fdb-148fc935b9c5' //My ElectionAPI key
 
 export default {
 
-  methods: {
-    moment:function() {
-      return moment();
-    }
-  },
-
   //Here are my variables 
   data:function(){
     return {

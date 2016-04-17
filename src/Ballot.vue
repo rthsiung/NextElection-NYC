@@ -1,7 +1,19 @@
 <!-- template code -->
 <template>
 
-{{ }}
+<p>The state of New York holds <span class="showhide">“closed” primaries</span>, which means only people who are already registered with a political party may vote for that party’s candidate(s).</p>
+
+<p class="input-label">Select a party to view their ballot:</p>
+<select v-model="chooseParty">
+  <option selected disabled hidden style="display:none" value=""></option>
+  <option v-for="party in listofParties" v-bind:value="chosenParty">
+    {{ party }}    
+  </option>
+</select>
+
+<div v-if="chooseParty">
+  show ballot here
+</div>
 
 </template>
 
@@ -15,7 +27,9 @@ export default {
   data:function(){
     return {
       message: "",
-      APIresponse: []
+      chooseParty: "",
+      APIresponse: [],
+      listofParties: []
     }
   },
 
@@ -28,7 +42,7 @@ export default {
           this.message = "Contest List: Success!";
           this.APIresponse = response.data;
 
-          //Store all of the party info in a new object, but only for parties where there are contests
+          //Store all of the party info in partiesWithContests object, but only for parties where there are contests
           var partiesWithContests = {};
           this.APIresponse.parties.forEach(
             function(partyinfo){
@@ -36,18 +50,20 @@ export default {
                 partiesWithContests[partyinfo.name] = partyinfo;
               }
           });
-          //console.log(Object.keys(partiesWithContests)); // shows the party names!
+          
+          this.listofParties = Object.keys(partiesWithContests); // shows the party names!
+          console.log(this.listofParties);
+          //console.log(JSON.stringify(partiesWithContests));
 
           //if the users chooses "partyName X", then show them only contests + candidates for that party
-          var partyChosen = "";
-          partyChosen = "Democratic";
-          partiesWithContests[partyChosen].contests.forEach(function(contest){
-            console.log(contest.contest_description);
-            contest.candidacies.forEach(function(candidate){
-              console.log(candidate.ballot_name);
-            })
-          ;});
-   
+          // var partyChosen = "";
+          // partyChosen = "Democratic";
+          // partiesWithContests[partyChosen].contests.forEach(function(contest){
+          //   console.log(contest.contest_description);
+          //   contest.candidacies.forEach(function(candidate){
+          //     console.log(candidate.ballot_name);
+          //   })
+          // });
       }, function (response) {
           // error callback
           this.message = "Contest List: Failure :("
