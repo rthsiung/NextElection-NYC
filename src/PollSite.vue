@@ -1,7 +1,7 @@
 <!-- template code -->
 <template>
 
-  <h2>Where You Vote</h2>
+  <h3>Where You Vote</h3>
   <p>
     {{ APIresponse.site_name }}<br>
     {{ APIresponse.site_address }}

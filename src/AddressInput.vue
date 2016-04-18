@@ -4,27 +4,23 @@
   <h2>Where do I vote?<br>Who are the candidates?</h2>
 
   <p>Enter the address where you're registered to vote:</p>
-  <input style="width: 100%;" id="addressInputField" placeholder="e.g. 25 West 4th St, New York, NY 10012" type="text" v-on:keyup="getAddressProps"
+  <input style="width: 100%;" id="addressInputField" placeholder="e.g. 25 West 4th St, New York, NY 10012" type="text"
   ></input>
 
   <p><span class="moreinfo">I'm not sure where (or if) I'm registered to vote</span>.</p>
 
 <!--Everything you need to know to vote!-->
-
-  <div v-if="addressDetailsStreetNumber != '' " id="everything-you-need-to-know">
-
-    <pollsite 
-    v-bind:streetnumber="addressDetailsStreetNumber"
-    v-bind:streetname="addressDetailsStreetName"
-    v-bind:postalcode="addressDetailsPostalCode"
-    ></pollsite>
-
-    <!--
-    <ballot districtkey="" electionid=""></ballot>
-    -->
-
+  <div v-if="addressDetailsStreetNumber != ''">
+    <pollsite
+      v-bind:streetnumber = "addressDetailsStreetNumber"
+      v-bind:streetname = "addressDetailsStreetName"
+      v-bind:postalcode = "addressDetailsPostalCode"
+      ></pollsite>
+      <ballot
+        v-bind:districtkey = ""
+        v-bind:electionid = ""
+      ></ballot>
   </div>
-
 </template>
 
 <script>
@@ -59,7 +55,7 @@ export default {
     var addressAPIresponse = new google.maps.places.Autocomplete(addressinputfield);
 
     //When the user enters in a new address, Google's autocomplete feature will update and we can return this new address's details using .getPlace()
-    addressAPIresponse.addListener('place_changed', function(){
+    addressAPIresponse.addListener('place_changed', () => {
       this.addressDetails = addressAPIresponse.getPlace();
     //console.log(JSON.stringify(this.addressDetails));
 
@@ -76,10 +72,9 @@ export default {
       this.addressDetailsStreetName = addressComponentsFormatted.route;
       this.addressDetailsPostalCode = addressComponentsFormatted.postal_code;
 
-      console.log("Street number is: " + this.addressDetailsStreetNumber);
-      console.log("Street name is: " + this.addressDetailsStreetName);
-      console.log("Zip code is: " + this.addressDetailsPostalCode);  
-
+      //console.log("Street number is: " + this.addressDetailsStreetNumber);
+      //console.log("Street name is: " + this.addressDetailsStreetName);
+      //console.log("Zip code is: " + this.addressDetailsPostalCode);  
     });
     
   }
