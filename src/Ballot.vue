@@ -1,7 +1,7 @@
 <!-- template code -->
 <template>
 
-<h2>The Candidates</h2>
+<h3>The Candidates</h3>
 
 <p>The state of New York holds <span class="moreinfo">“closed” primaries</span> -- so only people who are already registered with a political party may vote for that party’s candidate(s).</p>
 
@@ -15,16 +15,17 @@
   <p>
     The party you selected: {{ partyselect }}
   </p>
-
-  <p>show office</p>
-    <ul>
-      <li>show candidates</li>
-    </ul>
+  <ul>
+    <li v-for="contest in partiesWithContests[partyselect].contests">{{ contest.contest_description }} </li>
+      <ul>
+        <li>show candidates</li>
+      </ul>
+  </ul>
 
 </div>
 
 <div v-else>
-  <p><span class="showhide">Why isn't my party listed?</span></p>
+  <p><span class="moreinfo">Why isn't my party listed?</span></p>
 </div>
 
 </template>
@@ -41,7 +42,8 @@ export default {
       message: "",
       partyselect: null,
       APIresponse: [],
-      listofParties: []
+      listofParties: [], // just the parties with contests
+      partiesWithContests: {} // full party info
     }
   },
 
@@ -54,16 +56,17 @@ export default {
       this.APIresponse = response.data;
 
       //Store all of the party info in partiesWithContests object, but only for parties where there are contests
-      var partiesWithContests = {};
+      var tempPartiesWithContests = {};
       this.APIresponse.parties.forEach(
         function(partyinfo){
           if (partyinfo.contests[0].contest_description != "No Contests"){
-            partiesWithContests[partyinfo.name] = partyinfo;
+            tempPartiesWithContests[partyinfo.name] = partyinfo;
           }
       });
       
-      this.listofParties = Object.keys(partiesWithContests); // shows the party names!
-      //console.log(JSON.stringify(partiesWithContests));
+      this.partiesWithContests = tempPartiesWithContests;
+      this.listofParties = Object.keys(this.partiesWithContests);
+      //console.log(JSON.stringify(this.partiesWithContests));
 
       //if the users chooses "partyName X", then show them only contests + candidates for that party
       // var partyChosen = "";
