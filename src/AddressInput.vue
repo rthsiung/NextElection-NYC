@@ -1,25 +1,22 @@
-<!-- template code -->
 <template>
 
 <!--Address Input Area-->
   <h2>Where do I vote?<br>Who are the candidates?</h2>
 
   <p>Enter the address where you're registered to vote:</p>
-  <input style="width: 100%;" id="addressInputField" placeholder="e.g. 25 West 4th St, New York, NY 10012" type="text"
+  <input style="width: 100%;" id="addressInputField" placeholder="e.g. 25 West 4th St, New York, NY 10012" type="text" v-on:keyup="getAddressProps"
   ></input>
 
   <p><span class="moreinfo">I'm not sure where (or if) I'm registered to vote</span>.</p>
 
-   <p>The address is: {{addressDetailsStreetName}} {{addressDetailsStreetName}}, {{addressDetailsPostalCode}}.</p>
-
 <!--Everything you need to know to vote!-->
 
-  <div v-if="addressDetailsStreetNumber != null" id="everything-you-need-to-know">
-    
+  <div v-if="addressDetailsStreetNumber != '' " id="everything-you-need-to-know">
+
     <pollsite 
-    :streetnumber = "addressDetailsStreetNumber"
-    :streetname = "addressDetailsStreetName"
-    :postalcode = "addressDetailsPostalCode"
+    v-bind:streetnumber="addressDetailsStreetNumber"
+    v-bind:streetname="addressDetailsStreetName"
+    v-bind:postalcode="addressDetailsPostalCode"
     ></pollsite>
 
     <!--
@@ -30,7 +27,6 @@
 
 </template>
 
-<!-- logic code -->
 <script>
 var browserKey = 'AIzaSyCFWn95jlosz4xNi5l6Ug0pMdBrtLrWDDM' // API key for Google Maps Javascript API
 
@@ -39,17 +35,20 @@ export default {
   data: function() {
     return {
       addressDetails: {}, // object that stores the address details returned by Google's autocomplete API
-      addressDetailsStreetName: null, 
-      addressDetailsStreetNumber: null, 
-      addressDetailsPostalCode: null, 
-      addressDetailsDistrictKey: null, 
-      addressDetailsElectionID: null 
+      addressComponentsFormatted: {},
+
+      addressDetailsStreetNumber: "", 
+      addressDetailsStreetName: "",
+      addressDetailsPostalCode: "", 
+
+      addressDetailsDistrictKey: '', 
+      addressDetailsElectionID: ''
     }
   },
 
   methods: {
-    showAlert: function(){
-      alert('you blurred whoo!');
+    getAddressProps: function(){
+      //maybe some code needs to go in here?
     }
   },
 
@@ -77,7 +76,10 @@ export default {
       this.addressDetailsStreetName = addressComponentsFormatted.route;
       this.addressDetailsPostalCode = addressComponentsFormatted.postal_code;
 
-      console.log("Address is: " + this.addressDetailsStreetNumber + " " + this.addressDetailsStreetName + ", " + this.addressDetailsPostalCode);
+      console.log("Street number is: " + this.addressDetailsStreetNumber);
+      console.log("Street name is: " + this.addressDetailsStreetName);
+      console.log("Zip code is: " + this.addressDetailsPostalCode);  
+
     });
     
   }
