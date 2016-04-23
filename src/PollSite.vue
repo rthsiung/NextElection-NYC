@@ -6,6 +6,7 @@
     {{ APIresponse.site_name }}<br>
     {{ APIresponse.site_address }}
   </p>
+  <pre>{{ $data | json }}</pre>
 
   <googlemap v-bind:place=pollsiteAddress></googlemap>
 
