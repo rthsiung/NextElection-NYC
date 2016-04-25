@@ -7,8 +7,9 @@
   allowfullscreen></iframe>
 </template>
 
+
 <script>
-var browserKey = 'AIzaSyCFWn95jlosz4xNi5l6Ug0pMdBrtLrWDDM' // my Google Maps browser key
+
 export default {
 
   data:function(){
@@ -26,7 +27,8 @@ export default {
     },
     // this is a computed property that uses our key, and placeConverted property to generate the url in the format that Google Maps Embed API needs.
     url: function() {
-      return "https://www.google.com/maps/embed/v1/place?key="+browserKey+"&q="+this.placeConverted
+      
+      return "https://www.google.com/maps/embed/v1/place?key="+googleMapsAPIkey+"&q="+this.placeConverted
     }
   }
 }

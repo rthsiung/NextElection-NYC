@@ -6,7 +6,6 @@
     {{ APIresponse.site_name }}<br>
     {{ APIresponse.site_address }}
   </p>
-  <pre>{{ $data | json }}</pre>
 
   <googlemap v-bind:place=pollsiteAddress></googlemap>
 
@@ -20,7 +19,6 @@
 
 <!-- logic code -->
 <script>
-var browserKey = '33a19b90-164d-4262-9fdb-148fc935b9c5' //My ElectionAPI key
 
 export default {
 
@@ -93,7 +91,7 @@ export default {
     url: function() {
 
       //This is the abbreviated API call with as few props as possible
-      return "http://nyc.electionapi.com/psl/pollsiteinfo?streetnumber="+this.streetnumber+"&streetname="+this.streetname+"&postalcode="+this.postalcode+"&key="+browserKey
+      return "http://nyc.electionapi.com/psl/pollsiteinfo?streetnumber="+this.streetnumber+"&streetname="+this.streetname+"&postalcode="+this.postalcode+"&key="+electionAPIkey
     }
   }
 }

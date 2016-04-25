@@ -33,7 +33,6 @@
 
 <!-- logic code -->
 <script>
-var browserKey = '33a19b90-164d-4262-9fdb-148fc935b9c5' //My ElectionAPI key
 
 export default {
 
@@ -96,7 +95,7 @@ export default {
   //Computed variables - variables that are made up of other variables
   computed: {  
     url: function() {      
-      return "http://nyc.electionapi.com/psl/contestlist?districtkey="+this.districtkey+"&electionid="+this.electionid+"&key="+browserKey
+      return "http://nyc.electionapi.com/psl/contestlist?districtkey="+this.districtkey+"&electionid="+this.electionid+"&key="+electionAPIkey
     }
   }
 }
