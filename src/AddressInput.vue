@@ -19,10 +19,10 @@
       ></pollsite>
   </div>
 
-
+<!--
 <p>For debugging:</p>
 <pre>{{$data | json}}</pre>
-
+-->
 
 </template>
 

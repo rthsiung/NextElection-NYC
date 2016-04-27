@@ -22,9 +22,9 @@
 
 <!-- logic code -->
 <script>
+var electionAPIkey = '33a19b90-164d-4262-9fdb-148fc935b9c5' //My ElectionAPI key
 
 export default {
-
   //Here are my variables 
   data:function(){
     return {

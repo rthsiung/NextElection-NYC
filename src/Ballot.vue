@@ -3,8 +3,6 @@
 
 <h3>The Candidates</h3>
 
-<span style="color:gray">this election type is: {{electiontype}}</span>
-
 <div v-if="APIresponse.parties == null ">
   <p>The ballot for this election isn't available yet. The candidates on a ballot are usually published 3-4 weeks before an election, so check back!</p>
 </div>
@@ -23,6 +21,7 @@
 
 <!-- logic code -->
 <script>
+var electionAPIkey = '33a19b90-164d-4262-9fdb-148fc935b9c5' //My ElectionAPI key
 
 export default {
 

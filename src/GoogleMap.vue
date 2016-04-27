@@ -9,6 +9,7 @@
 
 
 <script>
+var googleMapsAPIkey = 'AIzaSyCFWn95jlosz4xNi5l6Ug0pMdBrtLrWDDM' // API key for Google Maps Javascript API
 
 export default {
 
