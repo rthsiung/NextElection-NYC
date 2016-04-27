@@ -9,23 +9,20 @@
 
   <p><span class="moreinfo">I'm not sure where (or if) I'm registered to vote</span>.</p>
 
-<!--
-  <p>Formatted address is {{formattedAddress}}.</p>
-  <p>Google Maps URL is <a href="{{googlemapsURL}}">{{googlemapsURL}}</a>.</p>
--->
-
   <div v-if="addressDetailsStreetNumber != ''">
     <pollsite
       v-bind:streetnumber = "addressDetailsStreetNumber"
       v-bind:streetname = "addressDetailsStreetName"
       v-bind:postalcode = "addressDetailsPostalCode"
+
+      v-bind:electiontype = "electiontype"
       ></pollsite>
   </div>
 
-<!--
+
 <p>For debugging:</p>
 <pre>{{$data | json}}</pre>
--->
+
 
 </template>
 
@@ -67,8 +64,6 @@ export default {
       addressComponents.forEach(function (component) {
         addressComponentsFormatted[component.types[0]] = component.long_name;
       });
-      console.log(JSON.stringify(this.addressDetails));
-      //console.log(JSON.stringify(addressComponentsFormatted));
 
       //Save the streetname, streetnumber,and postalcode
       this.addressDetailsStreetNumber = addressComponentsFormatted.street_number;
@@ -76,8 +71,11 @@ export default {
       this.addressDetailsPostalCode = addressComponentsFormatted.postal_code;
  
     });
-    
-  }
+  }, //close ready:function
+
+  props: [
+    "electiontype"
+    ]
 
 }
 </script>

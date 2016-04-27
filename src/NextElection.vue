@@ -2,7 +2,15 @@
 <template>
 
 <h1>The next election in NYC is on <b>{{ nextElectionDateFormatted }}</b>.</h1>
-<p>(This election is a <span class="moreinfo">{{ nextElectionType[0] }}</span>.<span v-if="nextElectionType.length > 1">For some people, there will also be a <span class="moreinfo">{{ nextElectionType[1] }}</span>.</span>)</p>
+<p>(This election is a <span v-on:click="showElectionTypeInfo" class="moreinfo">{{ nextElectionType[0] }}</span>.<span v-if="nextElectionType.length > 1">For some people, there will also be a <span class="moreinfo">{{ nextElectionType[1] }}</span>.</span>)</p>
+
+<div class="showinfo" v-if="showElectionTypeInfoToggle" transition="fade">
+  {{{ fieldbookAPIresponse[0].description }}}
+</div>
+
+<addressinput
+  v-bind:electiontype = "nextElectionType[0]"
+></addressinput>
 
 </template>
 
@@ -16,6 +24,7 @@ export default {
   //Here are my variables 
   data:function(){
     return {
+      showElectionTypeInfoToggle: false,
       message: "",
       APIresponse: [],
       elections: [],
@@ -24,6 +33,7 @@ export default {
       nextElectionDate: "",
       nextElectionDateFormatted:"",
       nextElectionType: [],
+      fieldbookAPIresponse: []
     }
   },
 
@@ -88,6 +98,16 @@ export default {
           // error callback
           this.message = "API response failure :("
       });
+
+      //GET request for Fieldbook election type descriptions
+      this.$http.get(this.fieldbookurl).then(function (response) {
+        // success callback
+        this.fieldbookAPIresponse = response.data;
+
+        }, function (response) {
+            // error callback
+        });      
+
     },
 
   //Properties - the inputs that you feed to this Vue component
@@ -99,11 +119,16 @@ export default {
   //Computed variables - variables that are made up of other variables
   computed: {
     url: function() {
-      //This is the full API call. Not all of these props are necessary.
-      //return "http://nyc.electionapi.com/psl/pollsiteinfo?latitude="+this.latitude+"&longitude="+this.longitude+"&county="+this.county+"&streetnumber="+this.streetnumber+"&streetname="+this.streetname+"&postalcode="+this.postalcode+"&key="+browserKey
-
-      //This is the abbreviated API call with as few props as possible
       return "http://nyc.electionapi.com/psl/pollsiteinfo?streetnumber="+this.streetnumber+"&streetname="+this.streetname+"&postalcode="+this.postalcode+"&key="+electionAPIkey
+    },
+    fieldbookurl: function(){
+      return "https://api.fieldbook.com/v1/571798785a41710300a7f2b0/election_types/?election_type=" + "Federal Primary"
+    }
+  },
+
+  methods:{
+    showElectionTypeInfo: function (event){
+      this.showElectionTypeInfoToggle = !this.showElectionTypeInfoToggle
     }
   }
 }
@@ -111,4 +136,16 @@ export default {
 
 
 <style scoped>
+  .showinfo {
+    padding: 5px 20px;
+  }
+
+  .fade-transition {
+    transition: all .3s ease;
+    background-color: #eee;
+    overflow: hidden;
+  }
+  .fade-enter, .fade-leave {
+    opacity: 0;
+  }
 </style>

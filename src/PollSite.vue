@@ -2,6 +2,7 @@
 <template>
 
   <h3>Where You Vote</h3>
+
   <p>
     {{ APIresponse.site_name }}<br>
     {{ APIresponse.site_address }}
@@ -12,6 +13,8 @@
   <ballot
     v-bind:districtkey = "{{districtKey}}"
     v-bind:electionid = "{{nextElectionID}}"
+
+    v-bind:electiontype = "electiontype"
   ></ballot>
 
 
@@ -42,7 +45,6 @@ export default {
       // GET request
       this.$http.jsonp(this.url).then(function (response) {
           // success callback
-          this.message = "Poll site API call... success!"
           this.APIresponse = response.data
           this.pollsiteAddress = this.APIresponse.destination;
           this.districtKey = this.APIresponse.districtKey;
@@ -84,7 +86,9 @@ export default {
   props: [
     "streetnumber", 
     "streetname", 
-    "postalcode"],
+    "postalcode",
+    "electiontype"
+    ],
 
   //Computed variables - variables that are made up of other variables
   computed: {

@@ -10,6 +10,7 @@ import NextElection from './NextElection.vue'
 import AddressInput from './AddressInput.vue'
 import PollSite from './PollSite.vue'
 import Ballot from './Ballot.vue'
+import BallotPrimary from './BallotPrimary.vue'
 import GoogleMap from './GoogleMap.vue'
 import UpcomingElections from './UpcomingElections.vue'
 
@@ -22,6 +23,7 @@ Vue.component('nextelection', NextElection)
 Vue.component('addressinput', AddressInput)
 Vue.component('pollsite', PollSite)
 Vue.component('ballot', Ballot)
+Vue.component('ballotprimary', BallotPrimary)
 Vue.component('googlemap', GoogleMap)
 Vue.component('upcomingelections', UpcomingElections)
 
