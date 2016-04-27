@@ -1,6 +1,13 @@
 <!-- template code -->
 <template>
 
+  <ballot
+    v-bind:districtkey = "{{districtKey}}"
+    v-bind:electionid = "{{nextElectionID}}"
+
+    v-bind:electiontype = "electiontype"
+  ></ballot>
+
   <h3>Where You Vote</h3>
 
   <p>
@@ -9,14 +16,6 @@
   </p>
 
   <googlemap v-bind:place=pollsiteAddress></googlemap>
-
-  <ballot
-    v-bind:districtkey = "{{districtKey}}"
-    v-bind:electionid = "{{nextElectionID}}"
-
-    v-bind:electiontype = "electiontype"
-  ></ballot>
-
 
 </template>
 

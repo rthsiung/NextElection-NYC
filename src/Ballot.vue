@@ -4,7 +4,8 @@
 <h3>The Candidates</h3>
 
 <div v-if="APIresponse.parties == null ">
-  <p>The ballot for this election isn't available yet. The candidates on a ballot are usually published 3-4 weeks before an election, so check back!</p>
+  <p>The candidates for this election haven't been announced yet.</p>
+  <p>The Board of Elections usually publishes this information 3-4 weeks before an election, so check back!</p>
 </div>
 
 <div v-else>

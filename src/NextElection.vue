@@ -8,7 +8,10 @@
   {{{ fieldbookAPIresponse[0].description }}}
 </div>
 
-<div style="margin-top: 3em;"></div>
+<div style="margin: 100px auto;">
+  <img src="../assets/arrow.png">
+</div>
+
 
 <addressinput
   v-bind:electiontype = "nextElectionType[0]"

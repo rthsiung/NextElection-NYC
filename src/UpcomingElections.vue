@@ -4,15 +4,21 @@
 <p>There are <b>{{ numberOfUpcomingElections }} other elections</b> coming up.</p>
 
 <ul>
-  <li v-for="">
-    (list of upcoming election dates and types)
+  <li v-for="elections in upcomingElections">
+    <span style="font-size: 1.2em">
+      {{ $key }}<br>
+      <span>
+    <span v-for="election in elections">{{ election }}</span>
   </li>
 </ul>
+
 
 </template>
 
 <!-- logic code -->
 <script>
+var electionAPIkey = '33a19b90-164d-4262-9fdb-148fc935b9c5' //My ElectionAPI key
+import moment from 'moment'
 
 export default {
 
@@ -41,8 +47,19 @@ export default {
         // get election date and type from the API response
         this.electionDatesTypes = this.APIresponse.elections.map(
           function (electionItem) {
-            var n = electionItem.Description.search(" -");
-            var newDescription = electionItem.Description.substring(0,n);  
+            //do a search for the word "Election"
+            var m = electionItem.Description.search("Election");
+              //IF the word "Election" is found
+              //then get the substring of all the text before "Election" AND including the word "Election"
+              if (m !== -1){
+                var newDescription = electionItem.Description.substring(0,m+8);
+              } 
+              //ELSE if the word "Election" is not found...
+              //Then do a search for " -" and get the substring of all the text before the dash
+              else {
+                var n = electionItem.Description.search(" -");
+                var newDescription = electionItem.Description.substring(0,n);
+              }
             return {
               "date": electionItem.YYYYMMDD_StartDate,
               "type": newDescription
@@ -51,20 +68,26 @@ export default {
 
         // a js object to hold the election dates (keys) and the types of elections on each of those dates (values)
         var tempUpcomingElections = {};
+        var nextelectiondate = this.electionDatesTypes[0].date;
 
-        // when there are more than 1 election on a date, create an array of election types for that date
+        // when there are more than 1 election on a date, create an array of election types for that date -- but only do this for dates that are not the NEXT election date
         this.electionDatesTypes.forEach(
           function (election) {
-            if ( Array.isArray(tempUpcomingElections[election.date]) ) {
-              tempUpcomingElections[election.date].push(election.type);
-            } else {
-              tempUpcomingElections[election.date] = [election.type];
+            if ( election.date != nextelectiondate){
+              if (Array.isArray(tempUpcomingElections[election.date]) ) {
+                tempUpcomingElections[
+                  moment(election.date).format('MMMM Do, YYYY')
+                ].push(election.type);
+              } else {
+                tempUpcomingElections[
+                  moment(election.date).format('MMMM Do, YYYY')
+                ] = [election.type];
+              }
             }
           });
 
-        // 
         this.upcomingElections = tempUpcomingElections;
-        this.numberOfUpcomingElections = Object.keys(tempUpcomingElections).length - 1;
+        this.numberOfUpcomingElections = Object.keys(tempUpcomingElections).length;
 
         //console.log(this.upcomingElections);
 
