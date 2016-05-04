@@ -1,9 +1,11 @@
 //My packages/dependencies
 import Vue from 'vue'
 import Resource from 'vue-resource'
+import AsyncData from 'vue-async-data'
 
 //Tell Vue that it can use these packages that you've imported
 Vue.use(Resource)
+Vue.use(AsyncData)
 
 //My components
 import NextElection from './NextElection.vue'

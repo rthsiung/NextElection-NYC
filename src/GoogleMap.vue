@@ -9,27 +9,22 @@
 
 
 <script>
-var googleMapsAPIkey = 'AIzaSyCFWn95jlosz4xNi5l6Ug0pMdBrtLrWDDM' // API key for Google Maps Javascript API
+var googleMapsAPIkey = 'AIzaSyCFWn95jlosz4xNi5l6Ug0pMdBrtLrWDDM' // API key for Google Maps Embed API
 
 export default {
-
-  data:function(){
-    return {
-      placeConverted: ""
-    }
-  },
   props: [
-    "place"
+    "pollsite",
+    "useraddress"
   ],
   computed: {
-    // e.g. "26 Broadway, New York, NY" becomes "26+Broadway,+New+York,+NY"
-    placeConverted: function() {
-      return this.place.replace(/\s/g, '+')
-    },
-    // this is a computed property that uses our key, and placeConverted property to generate the url in the format that Google Maps Embed API needs.
+    // Google Maps Embed API
     url: function() {
       
-      return "https://www.google.com/maps/embed/v1/place?key="+googleMapsAPIkey+"&q="+this.placeConverted
+      return "https://www.google.com/maps/embed/v1/directions?key="+googleMapsAPIkey
+          +"&origin="+this.useraddress
+          +"&destination="+this.pollsite
+          +"&avoid=tolls|highways"
+          +"&mode=walking"
     }
   }
 }

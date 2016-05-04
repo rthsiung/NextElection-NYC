@@ -21,6 +21,7 @@
       v-bind:postalcode = "addressDetailsPostalCode"
 
       v-bind:electiontype = "electiontype"
+      v-bind:useraddress = "formattedAddress"
       ></pollsite>
   </div>
 

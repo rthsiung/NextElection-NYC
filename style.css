@@ -16,6 +16,8 @@ html {
 
 body {
 	font-family: 'Roboto', sans-serif;
+	background-color: #29B6F6;
+	color: #FFFFFF;
 }
 
 h1 {
@@ -79,6 +81,27 @@ select {
 	cursor: help;
 }
 
+#indicators {
+	position: fixed;
+	top: 50%;
+	margin-top: -42px; /* half of the height of this div*/
+	right: 1em;
+	height: 84px;
+	width: 15px;
+}
+
+.indicatordot {
+	width: 15px;
+	height: 15px;
+	border-radius: 50%;
+	border: 3px solid #FFFFFF;
+	background: transparent;
+	margin: 10px 0px;
+}
+
+#dot1, #dot2, #dot3 {
+
+}
 
 
 /* SECTION 3: MEDIA QUERIES */

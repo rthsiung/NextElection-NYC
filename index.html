@@ -10,24 +10,27 @@
   </head>
 
   <body>
-    <div class="card">
+
+    <div class="card" id="section01">
       <nextelection streetnumber="25" streetname="W 4th St" postalcode="10012"></nextelection>
     </div>
 
     <hr>
 
-    <div class="card">
+    <div class="card" id="section02">
       <upcomingelections streetnumber="25" streetname="W 4th St" postalcode="10012"></upcomingelections>
     </div>
 
     <hr>
 
-    <div class="card faq">
+    <div class="card faq" id="section03">
       <h3>Common Questions</h3>
       <ul>
-        <li>How do I register to vote?</li>
-        <li>What do I need to bring when I vote?</li>
-        <li>How do I know who to vote for?</li>
+        <li><b>How do I register to vote?</b><br>
+          <p>If you have a valid ID from the DMV, you can register online. Otherwise, see full instructions here.</p></li>
+        <li><b>What do I need to bring when I vote?</b><br>
+          <p>Any kind of ID -- a photo ID is <i>not</i> required.</p></li>
+        <li><b>How do I know who to vote for?</b><br><p>If you believe you are at the poll site assigned to your home address, ask for an “affidavit” ballot.</p><p>Note that your vote will not be counted if you vote at a poll site that is not tied to where your registered home address is, so double check this using the NY State's Voter Lookup Tool.</p></li>
       </ul>
     </div>
 
@@ -37,15 +40,24 @@
       <p style="text-align: center;">A project by <a href="http://hsiungised.com">Rachel Hsiung</a>.</p>
     </div>
 
+    <div id="indicators">
+      <div class="indicatordot" id="dot1"></div>
+      <div class="indicatordot" id="dot2"></div>
+      <div class="indicatordot" id="dot3"></div>
+    </div>
+
+    <!--Indicator dots js-->
+    <script type="text/javascript">
+      
+    </script>
+
     <!--To load the Google Maps Javascript API-->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCFWn95jlosz4xNi5l6Ug0pMdBrtLrWDDM&libraries=places"></script>
 
-    <!-- Add to calendar plugin -->
-    <script type="text/javascript" src="https://addevent.com/libs/atc/1.6.1/atc.min.js" async defer></script>
-
-
     <!-- The build.js file grabs from main.js -->
     <script src="dist/build.js"></script>
+
+
 
 
 
