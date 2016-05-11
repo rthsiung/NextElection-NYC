@@ -3,15 +3,17 @@
 <!--Address Input Area-->
   <h2>Who are the candidates?<br>Where do I vote?</h2>
 
-  <p>We can help! What's the address where you're registered to vote?</p>
+  <p class="clearsans-light">Easy! What's the address where you're registered to vote?</p>
   <input style="width: 100%;" id="addressInputField" placeholder="e.g. 25 West 4th St, New York, NY 10012" type="text" v-model="addressinput"
   ></input>
 
-  <h4><span class="moreinfo" v-on:click="showVoterLookup" v-if="addressinput == null">Help! I'm not sure where (or if) I'm registered to vote.</span></h4>
+<p><span class="moreinfo" v-on:click="showVoterLookup" v-if="addressinput == null">
+  I'm not sure where / if I'm registered to vote. <span class="icon-expand_more"></span>
+</span></p>
 
   <div class="showinfo" v-if="showVoterLookupToggle" transition="fade">
   <p>You're in luck! The New York State Board of Elections has a tool where you can check your voter registration online:</p> 
-  <p><a target="_blank" href="https://voterlookup.elections.state.ny.us/"><button>Check your registration</button></a></p>
+  <p><a target="_blank" href="https://voterlookup.elections.state.ny.us/"><button>Go check your registration > </button></a></p>
   </div>
 
   <div v-if="addressDetailsStreetNumber != ''">
@@ -95,16 +97,5 @@ export default {
 </script>
 
 <style scoped>
-  .showinfo {
-    padding: 5px 20px;
-  }
 
-  .fade-transition {
-    transition: all .3s ease;
-    background-color: #eee;
-    overflow: hidden;
-  }
-  .fade-enter, .fade-leave {
-    opacity: 0;
-  }
 </style>

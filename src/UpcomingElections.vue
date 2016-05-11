@@ -1,13 +1,11 @@
 <!-- template code -->
 <template>
 
-<p>There are <b>{{ numberOfUpcomingElections }} other elections</b> coming up.</p>
+<p>There are <b>{{ numberOfUpcomingElections }} other elections</b> coming up:</p>
 
 <ul>
   <li v-for="elections in upcomingElections">
-    <span style="font-size: 1.2em">
-      {{ $key }}<br>
-      <span>
+    <span style="font-size: 2em">{{ $key }}</span><br>
     <span v-for="election in elections">{{ election }}</span>
   </li>
 </ul>

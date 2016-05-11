@@ -1,10 +1,120 @@
 /*
-SECTION 1: Basic HTML Elements
-SECTION 2: Custom Classes and IDs
-SECTION 3: Media Queries
+SECTION 1: Fonts
+SECTION 2: Basic HTML Elements
+SECTION 3: Custom Classes and IDs
+SECTION 4: Media Queries
 */
 
-/* SECTION 1: Basic HTML Elements */
+/* SECTION 1: Fonts */
+
+@font-face {
+    font-family: 'clear_sansregular';
+    src: url('fonts/ClearSans-Regular-webfont.eot');
+    src: url('fonts/ClearSans-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/ClearSans-Regular-webfont.woff') format('woff'),
+         url('fonts/ClearSans-Regular-webfont.ttf') format('truetype'),
+         url('fonts/ClearSans-Regular-webfont.svg#clear_sansregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'clear_sans_lightregular';
+    src: url('fonts/ClearSans-Light-webfont.eot');
+    src: url('fonts/ClearSans-Light-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/ClearSans-Light-webfont.woff') format('woff'),
+         url('fonts/ClearSans-Light-webfont.ttf') format('truetype'),
+         url('fonts/ClearSans-Light-webfont.svg#clear_sans_lightregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.clearsans-light {
+	font-family: 'clear_sans_lightregular', sans-serif;
+}
+
+@font-face {
+    font-family: 'clear_sansbold';
+    src: url('fonts/ClearSans-Bold-webfont.eot');
+    src: url('fonts/ClearSans-Bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/ClearSans-Bold-webfont.woff') format('woff'),
+         url('fonts/ClearSans-Bold-webfont.ttf') format('truetype'),
+         url('fonts/ClearSans-Bold-webfont.svg#clear_sansbold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.clearsans-bold {
+	font-family: 'clear_sansbold', sans-serif;
+}
+
+@font-face {
+    font-family: 'clear_sans_mediumregular';
+    src: url('fonts/ClearSans-Medium-webfont.eot');
+    src: url('fonts/ClearSans-Medium-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/ClearSans-Medium-webfont.woff') format('woff'),
+         url('fonts/ClearSans-Medium-webfont.ttf') format('truetype'),
+         url('fonts/ClearSans-Medium-webfont.svg#clear_sans_mediumregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.clearsans-medium {
+	font-family: 'clear_sans_mediumregular', sans-serif;
+}
+
+@font-face {
+    font-family: 'icomoon';
+    src:    url('fonts/icomoon.eot?8khaxz');
+    src:    url('fonts/icomoon.eot?8khaxz#iefix') format('embedded-opentype'),
+        url('fonts/icomoon.ttf?8khaxz') format('truetype'),
+        url('fonts/icomoon.woff?8khaxz') format('woff'),
+        url('fonts/icomoon.svg?8khaxz#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'icomoon' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering*/
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-arrow_downward:before {
+    content: "\e5db";
+}
+.icon-date_range:before {
+    content: "\e916";
+}
+.icon-insert_invitation:before {
+    content: "\e24f";
+}
+.icon-expand_less:before {
+    content: "\e5ce";
+}
+.icon-expand_more:before {
+    content: "\e5cf";
+}
+.icon-calendar:before {
+    content: "\e900";
+}
+.icon-arrow-down2:before {
+    content: "\e901";
+}
+
+
+
+/* SECTION 2: Basic HTML Elements */
+
 html {
   box-sizing: border-box;
 }
@@ -15,18 +125,23 @@ html {
 }
 
 body {
-	font-family: 'Roboto', sans-serif;
+	font-family: 'clear_sans_lightregular', sans-serif;
 	background-color: #29B6F6;
 	color: #FFFFFF;
 }
 
 h1 {
+	font-family: 'clear_sansregular', sans-serif;
+	line-height: 1.15em;
 }
 
 h2 {
+	font-family: 'clear_sansregular', sans-serif;
+
 }
 
 h3 {
+	font-family: 'clear_sansregular', sans-serif;
 }
 
 p {
@@ -49,8 +164,19 @@ select {
 	max-width:200px;
 }
 
+ul {
+	list-style-type: none;
+	padding-left: 0;
+}
 
-/* SECTION 2: Custom Classes and IDs */
+li {
+	padding-bottom: 1em;
+}
+
+
+
+
+/* SECTION 3: Custom Classes and IDs */
 
 .card {
 	/*
@@ -67,6 +193,11 @@ select {
 	margin: 2em auto;
 }
 
+.bg-highlight {
+	background-color: rgba(2,119,189,0.9);
+	padding: 0.5em 1em;
+}
+
 .input-label {
 	margin: 1em 0 0 0;
 	color: #A2A2A2;
@@ -77,8 +208,25 @@ select {
 
 .moreinfo {
 	text-decoration: none;
-	border-bottom: 1px gray dashed;
-	cursor: help;
+	/*border-bottom: 1px white dashed;*/
+	cursor: pointer;
+	background-color: rgba(2,119,189,0.4);
+	padding: 4px 0 4px 6px;
+	line-height: 1.5em;
+}
+
+.showinfo {
+	padding: 5px 20px;
+	margin: 0 0 1.5em 0;
+}
+
+.fade-transition {
+	transition: all .3s ease;
+	background-color: rgba(2,119,189,0.3);
+	overflow: hidden;
+}
+.fade-enter, .fade-leave {
+	opacity: 0;
 }
 
 #indicators {
@@ -104,7 +252,7 @@ select {
 }
 
 
-/* SECTION 3: MEDIA QUERIES */
+/* SECTION 4: MEDIA QUERIES */
 
 @media only screen and (max-width: 600px) {
 	.card {

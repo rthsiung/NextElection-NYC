@@ -35,6 +35,6 @@ export default {
 iframe {
   border: 0;
   width: 100%;
-  min-height: 350px;
+  min-height: 400px;
 }
 </style>

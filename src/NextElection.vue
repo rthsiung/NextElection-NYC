@@ -1,17 +1,43 @@
 <!-- template code -->
 <template>
 
-<h1>The next election in NYC is on <b>{{ nextElectionDateFormatted }}</b>.</h1>
-<p>(This election is a <span v-on:click="showElectionTypeInfo" class="moreinfo">{{ nextElectionType[0] }}</span>.<span v-if="nextElectionType.length > 1">For some people, there will also be a <span class="moreinfo">{{ nextElectionType[1] }}</span>.</span>)</p>
+<h1><span class="clearsans-light">The next election in NYC is on</span> {{ nextElectionDateFormatted }}.</h1>
+
+<p>
+  This election is a 
+  <span v-on:click="showElectionTypeInfo" class="moreinfo">
+    {{ nextElectionType[0] }} <span class="icon-expand_more"></span>
+  </span>.
+  <span v-if="nextElectionType.length > 1">
+   For some people, there will also be a <span class="moreinfo">{{ nextElectionType[1] }}</span>.
+  </span>
+</p>
 
 <div class="showinfo" v-if="showElectionTypeInfoToggle" transition="fade">
   {{{ fieldbookAPIresponse[0].description }}}
 </div>
 
-<div style="margin: 100px auto;">
-  <img src="../assets/arrow.png">
+<!--Add to calendar feature-->
+<div title="Add to Calendar" class="addeventatc">
+    Add to Calendar
+    <span class="start">{{nextElectionDateFormattedforAddEvent}} 06:00 AM</span>
+    <span class="end">{{nextElectionDateFormattedforAddEvent}} 09:00 PM</span>
+    <span class="timezone">America/New_York</span>
+    <span class="title">Summary of the event</span>
+    <span class="description">Description of the event<br>Example of a new line</span>
+    <span class="location">Location of the event</span>
+    <span class="organizer">Organizer</span>
+    <span class="organizer_email">Organizer e-mail</span>
+    <span class="facebook_event">https://www.facebook.com/events/703782616363133</span>
+    <span class="all_day_event">false</span>
+    <span class="date_format">MM/DD/YYYY</span>
 </div>
 
+<!--<pre>{{ $data | json }}</pre>-->
+
+<div style="margin: 100px auto;">
+    <span class="icon-arrow-down2" style="font-size:50px; text-decoration: none; color: white;"></span>
+</div>
 
 <addressinput
   v-bind:electiontype = "nextElectionType[0]"
@@ -37,6 +63,7 @@ export default {
       upcomingElections: {},
       nextElectionDate: "",
       nextElectionDateFormatted:"",
+      nextElectionDateFormattedforAddEvent:"",
       nextElectionType: [],
       fieldbookAPIresponse: []
     }
@@ -96,6 +123,7 @@ export default {
 
         this.nextElectionDate = Object.keys(this.upcomingElections)[0];
         this.nextElectionDateFormatted = moment(this.nextElectionDate).format('dddd, MMMM Do, YYYY');
+        this.nextElectionDateFormattedforAddEvent = moment(this.nextElectionDate).format('MM/DD/YYYY');
 
         this.nextElectionType = this.upcomingElections[this.nextElectionDate];
 
@@ -141,16 +169,4 @@ export default {
 
 
 <style scoped>
-  .showinfo {
-    padding: 5px 20px;
-  }
-
-  .fade-transition {
-    transition: all .3s ease;
-    background-color: #eee;
-    overflow: hidden;
-  }
-  .fade-enter, .fade-leave {
-    opacity: 0;
-  }
 </style>

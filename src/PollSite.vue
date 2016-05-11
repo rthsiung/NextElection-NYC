@@ -9,11 +9,11 @@
   ></ballot>
 
   <h3>Where You Vote</h3>
-
-  <p>
+  
+  <div class="bg-highlight">
     {{ pollSiteandElectionDetails.pollsiteName }}<br>
     {{ pollSiteandElectionDetails.pollsiteAddress }}
-  </p>
+  </div>
 
   <googlemap 
     v-bind:pollsite="pollSiteandElectionDetails.pollsiteAddress"
