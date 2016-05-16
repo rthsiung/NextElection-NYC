@@ -5,7 +5,7 @@
 
   <p class="clearsans-light">Easy! What's the address where you're registered to vote?</p>
   <div class="inputwrapper">
-    <input id="addressInputField" placeholder="e.g. 25 West 4th St, New York, NY 10012" type="search" v-model="addressinput"
+    <input id="addressInputField" placeholder="e.g. 25 West 4th St, New York, NY 10012" type="text" v-model="addressinput"
     ></input>
     <!--x button to clear address input-->
     <button v-if="addressinput" class="clearinput" v-on:click="addressinput=''"><span class="icon-cancel"></span></button>
