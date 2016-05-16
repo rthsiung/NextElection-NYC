@@ -272,10 +272,10 @@ li {
 }
 
 .indicatordot {
-	width: 15px;
-	height: 15px;
+	width: 12px;
+	height: 12px;
 	border-radius: 50%;
-	border: 3px solid #FFFFFF;
+	border: 2px solid #FFFFFF;
 	background: transparent;
 	margin: 10px 0px;
 }
@@ -287,7 +287,32 @@ li {
 
 /* SECTION 4: MEDIA QUERIES */
 
+@media only screen and (min-width: 800px) {
+	body {
+		font-size: 20px;
+	}
+	.card {
+		min-width: 700px;
+		width: 75%;
+		padding: 2em;
+	}
+}
+
+@media only screen and (min-width: 601px) and (max-width: 799px){
+	body {
+		font-size: 22px;
+	}
+	.card {
+		min-width: 500px;
+		width: 80%;
+		padding: 2em;
+	}
+}
+
 @media only screen and (max-width: 600px) {
+	body {
+		font-size: 15px;
+	}
 	.card {
 		min-width: 300px;
 		max-width: 450px;
