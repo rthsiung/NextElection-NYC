@@ -6,7 +6,7 @@
 <p>
   This election is a 
   <span v-on:click="showElectionTypeInfo" class="moreinfo">
-    {{ nextElectionType[0] }} <span class="icon-expand_more"></span>
+    {{ nextElectionType[0] }}&nbsp;<span class="icon-expand_more"></span>
   </span>.
   <span v-if="nextElectionType.length > 1">
    For some people, there will also be a <span class="moreinfo">{{ nextElectionType[1] }}</span>.

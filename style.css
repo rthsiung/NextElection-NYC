@@ -88,7 +88,6 @@ SECTION 4: Media Queries
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
-
 .icon-arrow_downward:before {
     content: "\e5db";
 }
@@ -104,12 +103,22 @@ SECTION 4: Media Queries
 .icon-expand_more:before {
     content: "\e5cf";
 }
-.icon-calendar:before {
+.icon-cancel:before {
     content: "\e900";
 }
-.icon-arrow-down2:before {
+.icon-cancel{
+    color: rgba(192,192,192,0.7);
+    font-size: 1.5em;
+    display: inline-block;
+    vertical-align: middle;
+}
+.icon-calendar:before {
     content: "\e901";
 }
+.icon-arrow-down2:before {
+    content: "\e902";
+}
+
 
 
 
@@ -164,6 +173,10 @@ select {
 	max-width:200px;
 }
 
+button {
+
+}
+
 ul {
 	list-style-type: none;
 	padding-left: 0;
@@ -198,6 +211,25 @@ li {
 	padding: 0.5em 1em;
 }
 
+.inputwrapper {
+	position: relative;
+	width: 100%;
+}
+
+#addressInputField {
+	width: 100%;
+}
+
+.clearinput{
+	border: none;
+	background: white;
+	width: 2.5em;
+	height: 45px;
+	position: absolute;
+	right: 0;
+	margin-top:2px;
+}
+
 .input-label {
 	margin: 1em 0 0 0;
 	color: #A2A2A2;
@@ -211,8 +243,8 @@ li {
 	/*border-bottom: 1px white dashed;*/
 	cursor: pointer;
 	background-color: rgba(2,119,189,0.4);
-	padding: 4px 0 4px 6px;
-	line-height: 1.5em;
+	padding: 3px 0 3px 6px;
+	line-height: 1.8em;
 }
 
 .showinfo {
