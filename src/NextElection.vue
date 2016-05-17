@@ -14,7 +14,6 @@
 </p>
 
 <div class="showinfo" v-if="showElectionTypeInfoToggle" transition="fade">
-  <!--{{{ fieldbookAPIresponse[0].description }}}-->
   {{{ electionDetails.typedescription }}}
 </div>
 

@@ -111,6 +111,7 @@ SECTION 4: Media Queries
     font-size: 1.5em;
     display: inline-block;
     vertical-align: middle;
+    margin: 0 auto;
 }
 .icon-calendar:before {
     content: "\e901";
@@ -247,7 +248,7 @@ a {
 }
 
 .bg-highlight {
-	background-color: rgba(2,119,189,0.9);
+	background-color: rgba(2,119,189,0.4);
 	padding: 0.5em 1em;
 }
 
@@ -261,16 +262,18 @@ a {
 }
 
 .clearinput{
-	border: none;
+	border: transparent;
 	background: white;
-	width: 2.5em;
+	width: 2em;
 	height: 45px;
 	position: absolute;
-	right: 3px;
+	right: 0.5em;
 	top: 0;
 	margin-top:4px;
 	border-radius: 2px;
 	overflow: hidden;
+	box-shadow: none;
+	padding: 3px;
 }
 
 .input-label {
@@ -306,6 +309,15 @@ a {
 
 .addeventatc {
 	visibility: hidden;
+	color: white !important;
+	font-family: 'clear_sansregular' !important;
+	background: rgba(255,255,255,0.9) !important;
+	border: 2px solid #03A9F4 !important;
+	border-radius: 3px !important;
+}
+
+.addeventatc_dropdown span {
+	font-family: 'clear_sansregular' !important;
 }
 
 #indicators {

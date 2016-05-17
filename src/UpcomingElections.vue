@@ -1,18 +1,24 @@
 <!-- template code -->
 <template>
 
-<p>There are <b>{{ numberOfUpcomingElections }} other elections</b> coming up:</p>
+<h3>There are {{ numberOfUpcomingElections }} more elections coming up:</h3>
 
 <ul>
   <li v-for="elections in upcomingElections">
     <span class="upcoming-electiondate">{{ $key }}</span><br>
     <span v-for="election in elections">
-      <span v-on:click="" class="moreinfo">
+      <span v-on:click="showElectionTypeInfo" class="moreinfo">
         {{ election }}<span class="icon-expand_more"></span>
       </span>
+      <div class="showinfo" v-if="showElectionTypeInfoToggle" transition="fade">
+        {{{ typedescriptions[election] }}}
+      </div>
+
     </span>
   </li>
 </ul>
+
+<!--<pre>{{ $data | json}}</pre>-->
 
 
 </template>
@@ -27,12 +33,15 @@ export default {
   //Here are my variables 
   data:function(){
     return {
+      showElectionTypeInfoToggle: false,
       message: "",
       APIresponse: [],
       elections: [],
       electionDatesTypes: [],
       upcomingElections: {},
-      numberOfUpcomingElections: 0
+      numberOfUpcomingElections: 0,
+      fieldbookresponse: [],
+      typedescriptions: {}
     }
   },
 
@@ -93,11 +102,25 @@ export default {
 
         //console.log(this.upcomingElections);
 
-      }, function (response) {
-          // error callback
-          this.message = "API response failure :("
+        //Make the Fieldbook API call for election type descriptions
+        var fieldbookurl = "https://api.fieldbook.com/v1/571798785a41710300a7f2b0/election_types"
+        this.$http.get(fieldbookurl).then((response)=> {
+          // success callback
+          //create object with election types + descriptions
+          this.fieldbookresponse = response.data
+          var temp = {};
+          this.fieldbookresponse.forEach(
+            function (item) {
+              console.log(item.election_type)
+              console.log(item.description)
+              temp[item.election_type] = [item.description]
+            })
+          this.typedescriptions = temp;
+        }, function (response) {
+            //failure callback
+        });
       });
-    },
+  },
 
   //Properties - the inputs that you feed to this Vue component
   props: [
@@ -113,6 +136,11 @@ export default {
 
       //This is the abbreviated API call with as few props as possible
       return "http://nyc.electionapi.com/psl/pollsiteinfo?streetnumber="+this.streetnumber+"&streetname="+this.streetname+"&postalcode="+this.postalcode+"&key="+electionAPIkey
+    }
+  },
+  methods:{
+    showElectionTypeInfo: function (event){
+      this.showElectionTypeInfoToggle = !this.showElectionTypeInfoToggle
     }
   }
 }

@@ -22,6 +22,8 @@
 
   <br/><br/>
 
+  <h3>Don't forget!
+
   <!--Add to calendar feature-->
 <div title="Add to Calendar" class="addeventatc">
     Add to Calendar
@@ -41,6 +43,8 @@
     <span class="date_format">MM/DD/YYYY</span>
     <span class="alarm_reminder">60</span>
 </div>
+
+</h3>
 
 </template>
 

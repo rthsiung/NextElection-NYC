@@ -5,7 +5,7 @@
 
 <div v-if="APIresponse.parties == null " class="bg-highlight">
   <p>The candidates for this election haven't been announced yet.</p>
-  <p>The Board of Elections usually publishes this information 3-4 weeks before an election, so check back!</p>
+  <p>(The Board of Elections usually publishes this information 3-4 weeks before an election, so check back!)</p>
 </div>
 
 <div v-else>
