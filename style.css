@@ -355,13 +355,23 @@ a {
 	}
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (min-width: 375px) and (max-width: 600px) {
 	body {
 		font-size: 15px;
 	}
 	.card {
 		width: 95%;
 		max-width: 370px;
+	}
+}
+
+@media only screen and (max-width: 374px) {
+	body {
+		font-size: 13px;
+	}
+	.card {
+		width: 95%;
+		max-width: 350px;
 	}
 }
 
