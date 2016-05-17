@@ -18,7 +18,7 @@
 
   <div class="showinfo" v-if="!addressinput && showVoterLookupToggle" transition="fade">
   <p>You're in luck! The NY Board of Elections has a tool where you can check your voter registration online:</p> 
-  <p><a target="_blank" href="https://voterlookup.elections.state.ny.us/"><button>Check my voter registration</button></a></p>
+  <p><a target="_blank" href="https://voterlookup.elections.state.ny.us/"><button>Check my voter registration!</button></a></p>
   </div>
 
   <div v-if="addressinput && addressDetailsStreetNumber != ''">
@@ -27,7 +27,7 @@
       v-bind:streetname = "addressDetailsStreetName"
       v-bind:postalcode = "addressDetailsPostalCode"
 
-      v-bind:electiontype = "electiontype"
+      v-bind:electiondetails = "electiondetails"
       v-bind:useraddress = "formattedAddress"
       ></pollsite>
   </div>
@@ -89,7 +89,7 @@ export default {
   }, //close ready:function
 
   props: [
-    "electiontype"
+    "electiondetails"
     ],
 
   methods:{

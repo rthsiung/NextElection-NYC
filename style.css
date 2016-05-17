@@ -191,6 +191,10 @@ li {
 
 /* SECTION 3: Custom Classes and IDs */
 
+[v-cloak]{
+	display: none;
+}
+
 .card {
 	/*
 	background: #FFFFFF;
@@ -263,7 +267,12 @@ li {
 	opacity: 0;
 }
 
+.addeventatc {
+	visibility: hidden;
+}
+
 #indicators {
+	display: none;
 	position: fixed;
 	top: 50%;
 	margin-top: -42px; /* half of the height of this div*/
@@ -273,6 +282,7 @@ li {
 }
 
 .indicatordot {
+	display: none;
 	width: 12px;
 	height: 12px;
 	border-radius: 50%;

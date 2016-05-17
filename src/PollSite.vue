@@ -5,7 +5,7 @@
     v-bind:districtkey = "pollSiteandElectionDetails.districtKey"
     v-bind:electionid = "pollSiteandElectionDetails.nextElectionID"
 
-    v-bind:electiontype = "electiontype"
+    v-bind:electiontype = "electiondetails.electiontype"
   ></ballot>
 
   <h3>Where You Vote</h3>
@@ -20,6 +20,28 @@
     v-bind:useraddress="useraddress"
   ></googlemap>
 
+  <br/><br/>
+
+  <!--Add to calendar feature-->
+<div title="Add to Calendar" class="addeventatc">
+    Add to Calendar
+    <span class="start">{{ electiondetails.formattedDate }} 06:00 AM</span>
+    <span class="end">{{ electiondetails.formattedDate }} 09:00 PM</span>
+    <span class="timezone">America/New_York</span>
+    <span class="title">Election Day!</span>
+    <span class="description">
+      <p>POLL HOURS: All poll sites in NYC are open from 6am to 9pm.</p>
+      <p>POLL SITE: {{ pollSiteandElectionDetails.pollsiteName }}, {{ pollSiteandElectionDetails.pollsiteAddress }}</p>
+      <p>ELECTION TYPE: {{ electiondetails.electiontype }}</p>
+      <p>ABOUT: {{{ electiondetails.typedescription }}}</p>
+    </span>
+    <span class="location">{{pollSiteandElectionDetails.pollsiteAddress}}</span>
+    <span class="organizer">NextElection NYC</span>
+    <span class="all_day_event">false</span>
+    <span class="date_format">MM/DD/YYYY</span>
+    <span class="alarm_reminder">60</span>
+</div>
+
 </template>
 
 <!-- logic code -->
@@ -33,7 +55,7 @@ export default {
       pollSiteandElectionDetails: {
             "APIresponse": [],
             "pollsiteName": "",
-            "pollsiteAddress": "25 west 4th street, manhattan, ny",
+            "pollsiteAddress": "25 West 4th Street, Manhattan, NY",
             "districtKey": "",
             "electionDatesIDs": [],
             "cleanElectionDatesIDs": {},
@@ -46,9 +68,13 @@ export default {
     "streetnumber", 
     "streetname", 
     "postalcode",
-    "electiontype",
+    "electiondetails",
     "useraddress"
     ],
+
+  ready: function (){
+      addeventatc.refresh();
+  },
 
   asyncData: function(){
       // GET request

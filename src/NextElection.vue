@@ -14,23 +14,27 @@
 </p>
 
 <div class="showinfo" v-if="showElectionTypeInfoToggle" transition="fade">
-  {{{ fieldbookAPIresponse[0].description }}}
+  <!--{{{ fieldbookAPIresponse[0].description }}}-->
+  {{{ electionDetails.typedescription }}}
 </div>
 
 <!--Add to calendar feature-->
 <div title="Add to Calendar" class="addeventatc">
     Add to Calendar
-    <span class="start">{{nextElectionDateFormattedforAddEvent}} 06:00 AM</span>
-    <span class="end">{{nextElectionDateFormattedforAddEvent}} 09:00 PM</span>
+    <span class="start">{{ electionDetails.formattedDate }} 06:00 AM</span>
+    <span class="end">{{ electionDetails.formattedDate }} 09:00 PM</span>
     <span class="timezone">America/New_York</span>
-    <span class="title">Summary of the event</span>
-    <span class="description">Description of the event<br>Example of a new line</span>
-    <span class="location">Location of the event</span>
-    <span class="organizer">Organizer</span>
-    <span class="organizer_email">Organizer e-mail</span>
-    <span class="facebook_event">https://www.facebook.com/events/703782616363133</span>
+    <span class="title">Election Day!</span>
+    <span class="description">
+      <p>POLL HOURS: All poll sites in NYC are open from 6am to 9pm.</p>
+      <p>ELECTION TYPE: {{ nextElectionType[0] }}.</p>
+      <p>ABOUT: {{{ electionDetails.typedescription }}}</p>
+    </span>
+    <span class="location">Check your poll site location on NextElection!</span>
+    <span class="organizer">NextElection NYC</span>
     <span class="all_day_event">false</span>
     <span class="date_format">MM/DD/YYYY</span>
+    <span class="alarm_reminder">60</span>
 </div>
 
 <!--<pre>{{ $data | json }}</pre>-->
@@ -39,8 +43,9 @@
     <span class="icon-arrow-down2" style="font-size:50px; text-decoration: none; color: white;"></span>
 </div>
 
+<!--v-bind:electiontype = "nextElectionType[0]"-->
 <addressinput
-  v-bind:electiontype = "nextElectionType[0]"
+  v-bind:electiondetails = "electionDetails"
 ></addressinput>
 
 </template>
@@ -63,9 +68,9 @@ export default {
       upcomingElections: {},
       nextElectionDate: "",
       nextElectionDateFormatted:"",
-      nextElectionDateFormattedforAddEvent:"",
       nextElectionType: [],
-      fieldbookAPIresponse: []
+      fieldbookAPIresponse: [],
+      electionDetails: {}
     }
   },
 
@@ -80,7 +85,7 @@ export default {
         //This is where I would hide the loading animation.
 
         // success callback
-        this.message = "We got an API response!";
+        this.message = "Election API response success!";
         this.APIresponse = response.data; // store the api response
         this.elections = this.APIresponse.elections; 
 
@@ -123,23 +128,32 @@ export default {
 
         this.nextElectionDate = Object.keys(this.upcomingElections)[0];
         this.nextElectionDateFormatted = moment(this.nextElectionDate).format('dddd, MMMM Do, YYYY');
-        this.nextElectionDateFormattedforAddEvent = moment(this.nextElectionDate).format('MM/DD/YYYY');
-
         this.nextElectionType = this.upcomingElections[this.nextElectionDate];
+
+        
+
+        //Make the Fieldbook API call for election type descriptions
+        var fieldbookurl = "https://api.fieldbook.com/v1/571798785a41710300a7f2b0/election_types/?election_type="+this.nextElectionType[0]
+
+        this.$http.get(fieldbookurl).then((response)=> {
+          // success callback
+          this.fieldbookAPIresponse = response.data;
+          
+          //Create the electionDetails object -- this will be passed down to child components so that we can show the Add to Calendar button after the user enters their address and gets their poll site
+          this.electionDetails = {
+            "formattedDate": moment(this.nextElectionDate).format('MM/DD/YYYY'),
+            "electiontype": this.upcomingElections[this.nextElectionDate],
+            "typedescription": this.fieldbookAPIresponse[0].description
+          }
+
+          }, function (response) {
+              // error callback
+          });  
 
       }, function (response) {
           // error callback
-          this.message = "API response failure :("
-      });
-
-      //GET request for Fieldbook election type descriptions
-      this.$http.get(this.fieldbookurl).then(function (response) {
-        // success callback
-        this.fieldbookAPIresponse = response.data;
-
-        }, function (response) {
-            // error callback
-        });      
+          this.message = "Election API response failure :("
+      });    
 
     },
 
@@ -153,9 +167,6 @@ export default {
   computed: {
     url: function() {
       return "http://nyc.electionapi.com/psl/pollsiteinfo?streetnumber="+this.streetnumber+"&streetname="+this.streetname+"&postalcode="+this.postalcode+"&key="+electionAPIkey
-    },
-    fieldbookurl: function(){
-      return "https://api.fieldbook.com/v1/571798785a41710300a7f2b0/election_types/?election_type=" + "Federal Primary"
     }
   },
 
