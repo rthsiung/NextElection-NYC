@@ -176,7 +176,12 @@ select {
 }
 
 button {
-
+	background: white;
+	box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.30);
+	border-radius: 2px;
+	color: #0288D1;
+	border: none;
+	padding: 0.5em 1em;
 }
 
 ul {
