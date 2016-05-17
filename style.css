@@ -188,6 +188,12 @@ li {
 	padding-bottom: 1em;
 }
 
+a {
+	color: white;
+	text-decoration: none;
+	font-family: 'clear_sans_mediumregular', sans-serif;
+}
+
 
 
 
@@ -230,14 +236,6 @@ li {
 	background: #0277BD;
 }
 
-#footer a {
-	color: white;
-	font-family:;
-	text-decoration: none;
-	font-family: 'clear_sans_mediumregular', sans-serif;
-}
-
-
 .card {
 	padding: 2em;
 	margin: 0 auto;
@@ -267,6 +265,7 @@ li {
 	top: 0;
 	margin-top:4px;
 	border-radius: 2px;
+	overflow: hidden;
 }
 
 .input-label {

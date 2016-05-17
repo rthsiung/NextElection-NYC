@@ -1,9 +1,8 @@
 <template>
+  <h2>What am I voting for, and where do I vote?</h2>
+  <p>It depends! Where are you registered to vote?</p>
 
-<!--Address Input Area-->
-  <h2>Who are the candidates?<br>Where do I vote?</h2>
-
-  <p class="clearsans-light">Easy! What's the address where you're registered to vote?</p>
+  <!--Address Input Area-->
   <div class="inputwrapper">
     <input id="addressInputField" placeholder="e.g. 25 West 4th St, New York, NY 10012" type="text" v-model="addressinput"
     ></input>
@@ -11,7 +10,6 @@
     <button v-if="addressinput" class="clearinput" v-on:click="addressinput=''"><span class="icon-cancel"></span></button>
   </div>
  
-
 <p><span class="moreinfo" v-on:click="showVoterLookup" v-if="!addressinput">
   Help! I'm not sure if or where I'm registered to vote.&nbsp;<span class="icon-expand_more"></span>
 </span></p>
