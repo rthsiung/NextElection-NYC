@@ -5,8 +5,12 @@
 
 <ul>
   <li v-for="elections in upcomingElections">
-    <span style="font-size: 2em">{{ $key }}</span><br>
-    <span v-for="election in elections">{{ election }}</span>
+    <span class="upcoming-electiondate">{{ $key }}</span><br>
+    <span v-for="election in elections">
+      <span v-on:click="" class="moreinfo">
+        {{ election }}<span class="icon-expand_more"></span>
+      </span>
+    </span>
   </li>
 </ul>
 

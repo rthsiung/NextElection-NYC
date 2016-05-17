@@ -37,13 +37,11 @@
     <span class="alarm_reminder">60</span>
 </div>
 
-<!--<pre>{{ $data | json }}</pre>-->
+  <div id="arrow">
+    <h4>Tell me more!</h4>
+    <span class="icon-arrow-down2"></span>
+  </div>
 
-<div style="margin: 100px auto;">
-    <span class="icon-arrow-down2" style="font-size:50px; text-decoration: none; color: white;"></span>
-</div>
-
-<!--v-bind:electiontype = "nextElectionType[0]"-->
 <addressinput
   v-bind:electiondetails = "electionDetails"
 ></addressinput>
